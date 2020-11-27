@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    
+    <record id="helpdesk_ticket_action" model="ir.actions.act_window">
+        <field name="name">Tickets</field>
+        <field name="res_model">helpdesk.ticket</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new Ticket.
+            </p>
+        </field>
+    </record>
+
+    <record id="view_helpdesk_ticket_tree" model="ir.ui.view">
+        <field name="name">view.helpldesk.ticket.tree</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <tree string="Ticket">
+                <field name="name" />
+                <field name="date" />
+                 <field name="dedicated_time" widget="float_time" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    
+    <record id="helpdesk_ticket_view_form" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.view.form</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <button string="Assign" name="set_assigned" type="object" class="oe_highlight" attrs="{'invisible':[('state','!=','new')]}"/>
+                    <button string="Progress" name="set_progress" type="object" states="assigned" />
+                    <button string="Remaining" name="set_remaining" type="object" states="assigned, progress" />
+                    <button string="Done" name="set_done" type="object" class="oe_highlight"/>
+                    <button string="Cancel" name="set_cancel" type="object" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="new,done" />
+                </header>
+                <sheet>
+                    <div>
+                        <h1>
+                           Ticket # <field name="name" class="oe_inline"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="left">
+                            <field name="date" />
+                            <field name="deadline" />
+                        </group>
+                        <group name="right">
+                            <field name="user_id" />
+                            <field name="assigned" />
+                            <field name="dedicated_time"/>
+                        </group>
+                    </group>
+                        <notebook>
+                            <page string="Main">
+                                <group string="Description">
+                                    <field name="description" nolabel="1"/>
+                                </group>
+                            </page>
+                            <page string="Quality">
+                                <group string="Actions">
+                                <group string="Corrective Action" name="left">
+                                    <field name="corrective_action" nolabel="1"/>
+                                </group>
+                                <group string="Preventive Action" name="right">
+                                    <field name="preventive_action" nolabel="1"/>
+                                </group>
+                                </group>    
+                            </page>
+                        </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <menuitem id="helpdesk_root_menu" name="Helpdesk" sequence="20"/>
+    <menuitem id="helpdesk_ticket_main_menu" name="Helpdesk" parent="helpdesk_root_menu"  sequence="10"/>
+    <menuitem id="helpdesk_ticket_menu" parent="helpdesk_ticket_main_menu"  sequence="10" action="helpdesk_ticket_action"/>
+</odoo>
+
+
+
