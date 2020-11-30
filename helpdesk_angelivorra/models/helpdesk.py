@@ -1,41 +1,72 @@
-from odoo import models, fields
+# -*- coding: utf-8 -*-
+from odoo import fields, models
 
-class Helpdesk(models.Model):
+
+class HelpdeskTicket (models.Model):
     _name = 'helpdesk.ticket'
-    _description = "Helpdesk ticket"
+    _description = 'HelpDesk Ticket'
 
     name = fields.Char(
-        string = 'Name')
+            'Name',
+            required=True)
+    
     description = fields.Text(
-        string = 'Description')
-    date = fields.Date(
-        string = 'Date')
+            'Description')
+    
+    date = fields.Date( 'Date' )
 
     state = fields.Selection(
-        [ ('new', 'New'),
-        ('assigned', 'Assigned'),
-        ('progress', 'Progress'),
-        ('waiting', 'Waiting'),
-        ('done', 'Done'),
-        ('cancel', 'Cancel')],
-        string='State',
-        default='new')
+            [('new','New'),
+             ('assigned','Assigned'),
+             ('in_progress', 'In Progress'),
+             ('pending', 'Pending'),
+             ('done', 'Done'),
+             ('cancel','Cancel')],
+            default = 'new')
 
-    dedicated_time = fields.Float(
-        string='Time')
+    dedicated_time = fields.Float('Time')
 
     assigned = fields.Boolean(
-        string='Assigned',
-        reSadonly=True)
+            readonly= True )
 
-    date_due = fields.Date(
-        string='Date due')
+    due_date = fields.Date('Due Date')
 
     corrective_action = fields.Html(
-        string='Corrective Action',
-        help='Detail of corrective action')
-
+            help = 'To add all actions taken to fix the issue'
+            )
     preventive_action = fields.Html(
-        string='Preventive Action',
-        help='Detail of preventive action')
+            help = 'To add actions to prevent the issue to happen')
 
+    user_id = fields.Many2one(
+            comodel_name = 'res.users',
+            string = 'Assigned to')
+
+
+    def btn_assigned(self):
+        """"""
+        self.ensure_one()
+        self.write({
+            'state':'assigned',
+            'assigned': True,
+            'user_id': self.env.user.id
+            })
+
+    def btn_progress(self):
+        """  """
+        self.ensure_one()
+        self.state = 'in_progress'
+
+    def btn_pending(self):
+        """  """
+        self.ensure_one()
+        self.state = 'pending'
+
+    def btn_done(self):
+        """  """
+        self.ensure_one()
+        self.state = 'done'
+
+    def btn_cancel(self):
+        """  """
+        self.ensure_one()
+        self.state = 'cancel'

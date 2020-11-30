@@ -1,20 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- tree view -->
+    <record id="helpdesk_angelivorra.ticket_tree_view" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.tree</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <tree string="Helpdesk Ticket Tree">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="state"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
 
-<record id="helpdesk_ticket_action" model="ir.actions.act_window">
-        <field name="name">Tickets</field>
+    <!-- Form view -->
+    <record id="helpdesk_angelivorra.ticket_form_view" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.form</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <form string="Helpdesk Ticket Form">
+                <header>
+                    <button string="Assign" type="object" name="btn_assigned" attrs="{'invisible':[('state', '!=', 'new')]}"/>
+                    <button string="In Progress" type="object" name="btn_progress" states="assigned,pending"/>
+                    <button string="Pending" type="object" name="btn_pending" states="in_progress"/>
+                    <button string="Done" type="object" name="btn_done" states="in_progress"/>
+                    <button string="Cancel" type="object" name="btn_cancel" states="in_progress,assigned,pending"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="new,done" />
+                </header>
+                <sheet>
+                    <div>
+                        <h1>
+                                Ticket<field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="right">
+                            <field name="date"/>
+                            <field name="due_date" />
+                        </group>
+                        <group name="left">
+                            <field name="assigned"/>
+                            <field name="user_id" />
+                            <field name="dedicated_time" widget="float_time"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <group string="Description">
+                                <field name="description" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Quality">
+                            <group string="Corrective">
+                                <field name="corrective_action" nolabel="1"/>
+                            </group>
+                            <group string="Preventive">
+                                <field name="preventive_action" nolabel="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- windows actions -->
+    <record id="helpdesk_action_view" model="ir.actions.act_window">
+        <field name="name">Ticket</field>
         <field name="res_model">helpdesk.ticket</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
-                Create new tickets
+                Click to create a new Ticket
             </p>
         </field>
-</record>
+    </record>
 
-<menuitem id="helpdesk_root_menu" name="Helpdesk" sequence="100"/>
-<menuitem id="helpdesk_ticket_main_menu" name="Helpdesk" parent="helpdesk_root_menu" sequence="10"/>
-<menuitem id="helpdesk_ticket_menu" action="helpdesk_ticket_action" parent="helpdesk_ticket_main_menu" sequence="10"/>
+    <!-- Menus -->
+    <menuitem id="helpdesk_root_menu" name="HelpDesk" sequence="10"/>
 
+    <menuitem id="helpdesk_ticket_main_menu" name="HelpDesk" parent="helpdesk_root_menu" sequence="10"/>
 
+    <menuitem id="helpdesk_ticket_menu" parent="helpdesk_ticket_main_menu" action="helpdesk_action_view" sequence="10"/>
 </odoo>
