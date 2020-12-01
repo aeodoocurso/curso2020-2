@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright <YEAR(S)> <AUTHOR(S)>
-     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
 
-<record id="helpdek_category" model="ir.module.category">
-    <field name="name">Helpdesk</field>
+<record id="ir_module_category_helpdesk" model="ir.module.category">
+    <field name="name">Helpesk</field>
 </record>
 
-<record id="helpdesk_groups_user" model="res.groups">
+<record id="res_groups_helpdesk_user" model="res.groups">
     <field name="name">User</field>
-    <field name="category_id" ref="helpdek_category"/>
+    <field name="category_id" ref="ir_module_category_helpdesk"/>
     <field name="comment">
-        Normal user.
+        The user will be able to browse some model.
     </field>
 </record>
 
-<record id="helpdesk_groups_manager" model="res.groups">
+<record id="res_groups_helpdesk_manager" model="res.groups">
     <field name="name">Manager</field>
-    <field name="category_id" ref="helpdek_category"/>
-    <field name="implied_ids" eval="[(4, ref('helpdesk_groups_user'))]"/>
+    <field name="category_id" ref="ir_module_category_helpdesk"/>
+    <field name="implied_ids" eval="[(4, ref('res_groups_helpdesk_user'))]"/>
     <field name="comment">
-        Manager
+        The user will be able to manage some model.
     </field>
     <field name="users" eval="[(4, ref('base.user_admin'))]"/>
 </record>

@@ -17,7 +17,8 @@
     "data": [
         'security/security.xml',
         'security/ir.model.access.csv',
-        'view/views.xml'
+        'view/helpdesk_ticket_views.xml',
+        'view/helpdesk_tag_views.xml',
     ],
     "demo": [
 
