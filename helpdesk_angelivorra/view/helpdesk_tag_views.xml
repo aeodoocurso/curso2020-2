@@ -33,8 +33,7 @@
                 <search string="Tag">
                     <field name="name" />
                     <group string="Group By" name="groupby">
-                        <filter name="name_groupby" string="name"
-                            context="{'group_by': 'name'}" />
+                        <filter name="name_groupby" string="name" context="{'group_by': 'name'}" />
                     </group>
                 </search>
             </field>
@@ -51,8 +50,7 @@
             </field>
         </record>
 
-        <menuitem id="helpdesk_tag_menu" parent="helpdest_ticket_main_menu"
-            action="helpdesk_tag_action" sequence="20"/>
-        
+        <menuitem id="helpdesk_tag_menu" parent="helpdest_ticket_main_menu" action="helpdesk_tag_action" sequence="20"/>
+
     </data>
 </odoo>

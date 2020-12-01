@@ -99,7 +99,6 @@ class HelpdeskTicket(models.Model):
     new_tag_name = fields.Char(
         string='New tag')
 
-
     color = fields.Integer(string='Color')
 
     def create_new_tag(self):
