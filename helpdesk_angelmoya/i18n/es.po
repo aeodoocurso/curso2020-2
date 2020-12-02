@@ -1,0 +1,223 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* helpdesk_angelmoya
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-25 16:24+0000\n"
+"PO-Revision-Date: 2020-11-25 16:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: helpdesk_angelmoya
+#: model:res.groups,comment:helpdesk_angelmoya.res_groups_helpdesk_user
+msgid ""
+"\n"
+"        The user will be able to browse some model.\n"
+"    "
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:res.groups,comment:helpdesk_angelmoya.res_groups_helpdesk_manager
+msgid ""
+"\n"
+"        The user will be able to manage some model.\n"
+"    "
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model_terms:ir.ui.view,arch_db:helpdesk_angelmoya.view_helpdesk_ticket_form
+msgid "Assign"
+msgstr "Asignar"
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields,field_description:helpdesk_angelmoya.field_helpdesk_ticket__assigned
+#: model:ir.model.fields.selection,name:helpdesk_angelmoya.selection__helpdesk_ticket__state__assigned
+msgid "Assigned"
+msgstr "Asignado"
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields,field_description:helpdesk_angelmoya.field_helpdesk_ticket__user_id
+msgid "Assigned to"
+msgstr "Asignado a"
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields.selection,name:helpdesk_angelmoya.selection__helpdesk_ticket__state__cancel
+#: model_terms:ir.ui.view,arch_db:helpdesk_angelmoya.view_helpdesk_ticket_form
+msgid "Cancel"
+msgstr "Cancelado"
+
+#. module: helpdesk_angelmoya
+#: model_terms:ir.actions.act_window,help:helpdesk_angelmoya.helpdest_ticket_action
+msgid "Click to create a new Tickets."
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields,field_description:helpdesk_angelmoya.field_helpdesk_ticket__corrective_action
+#: model_terms:ir.ui.view,arch_db:helpdesk_angelmoya.view_helpdesk_ticket_form
+msgid "Corrective Action"
+msgstr "Acción correctiva"
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields,field_description:helpdesk_angelmoya.field_helpdesk_ticket__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields,field_description:helpdesk_angelmoya.field_helpdesk_ticket__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields,field_description:helpdesk_angelmoya.field_helpdesk_ticket__date
+msgid "Date"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields,field_description:helpdesk_angelmoya.field_helpdesk_ticket__date_due
+msgid "Date Due"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields,field_description:helpdesk_angelmoya.field_helpdesk_ticket__description
+#: model_terms:ir.ui.view,arch_db:helpdesk_angelmoya.view_helpdesk_ticket_form
+msgid "Description"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields,help:helpdesk_angelmoya.field_helpdesk_ticket__corrective_action
+msgid "Detail of corrective action after this issue"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields,help:helpdesk_angelmoya.field_helpdesk_ticket__preventive_action
+msgid "Detail of preventive action after this issue"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields,field_description:helpdesk_angelmoya.field_helpdesk_ticket__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields.selection,name:helpdesk_angelmoya.selection__helpdesk_ticket__state__done
+#: model_terms:ir.ui.view,arch_db:helpdesk_angelmoya.view_helpdesk_ticket_form
+msgid "Done"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.ui.menu,name:helpdesk_angelmoya.helpdest_root_menu
+#: model:ir.ui.menu,name:helpdesk_angelmoya.helpdest_ticket_main_menu
+msgid "Helpdesk"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.module.category,name:helpdesk_angelmoya.ir_module_category_helpdesk
+msgid "Helpesk"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model,name:helpdesk_angelmoya.model_helpdesk_ticket
+msgid "Helpesk Ticket"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields,field_description:helpdesk_angelmoya.field_helpdesk_ticket__id
+msgid "ID"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields,field_description:helpdesk_angelmoya.field_helpdesk_ticket____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields,field_description:helpdesk_angelmoya.field_helpdesk_ticket__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields,field_description:helpdesk_angelmoya.field_helpdesk_ticket__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model_terms:ir.ui.view,arch_db:helpdesk_angelmoya.view_helpdesk_ticket_form
+msgid "Main"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:res.groups,name:helpdesk_angelmoya.res_groups_helpdesk_manager
+msgid "Manager"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields,field_description:helpdesk_angelmoya.field_helpdesk_ticket__name
+msgid "Name"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields.selection,name:helpdesk_angelmoya.selection__helpdesk_ticket__state__new
+msgid "New"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields,field_description:helpdesk_angelmoya.field_helpdesk_ticket__preventive_action
+#: model_terms:ir.ui.view,arch_db:helpdesk_angelmoya.view_helpdesk_ticket_form
+msgid "Preventive Action"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields.selection,name:helpdesk_angelmoya.selection__helpdesk_ticket__state__progress
+#: model_terms:ir.ui.view,arch_db:helpdesk_angelmoya.view_helpdesk_ticket_form
+msgid "Progress"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model_terms:ir.ui.view,arch_db:helpdesk_angelmoya.view_helpdesk_ticket_form
+msgid "Quality"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields,field_description:helpdesk_angelmoya.field_helpdesk_ticket__state
+msgid "State"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model_terms:ir.ui.view,arch_db:helpdesk_angelmoya.view_helpdesk_ticket_form
+msgid "Ticket #"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.actions.act_window,name:helpdesk_angelmoya.helpdest_ticket_action
+#: model:ir.ui.menu,name:helpdesk_angelmoya.helpdest_ticket_menu
+#: model_terms:ir.ui.view,arch_db:helpdesk_angelmoya.view_helpdesk_ticket_tree
+msgid "Tickets"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields,field_description:helpdesk_angelmoya.field_helpdesk_ticket__dedicated_time
+msgid "Time"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:res.groups,name:helpdesk_angelmoya.res_groups_helpdesk_user
+msgid "User"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model:ir.model.fields.selection,name:helpdesk_angelmoya.selection__helpdesk_ticket__state__waiting
+#: model_terms:ir.ui.view,arch_db:helpdesk_angelmoya.view_helpdesk_ticket_form
+msgid "Waiting"
+msgstr ""
+
+#. module: helpdesk_angelmoya
+#: model_terms:ir.ui.view,arch_db:helpdesk_angelmoya.view_helpdesk_ticket_form
+msgid "label"
+msgstr ""
