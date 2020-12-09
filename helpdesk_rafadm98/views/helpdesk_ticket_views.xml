@@ -7,7 +7,7 @@
             <tree string="Tickets">
                 <field name="name"/>
                 <field name="date"/>
-                <field name="state"/>
+                <field name="state_id"/>
             </tree>
         </field>
     </record>
@@ -17,12 +17,7 @@
         <field name="arch" type="xml">
             <form string="Helpdesk Ticket Form">
                 <header>
-                    <button string="Assing" name="set_assigned" type="object" class="oe_highlight" states="new"/>
-                    <button string="Progress" name="set_progress" type="object" states="assigned"/>
-                    <button string="Waiting" name="set_waiting" type="object" states="assigned,progress"/>
-                    <button string="Done" name="set_done" type="object" class="oe_highlight" states="assigned,progress,waiting"/>
-                    <button string="Cancel" name="set_cancel" type="object" class="oe_highlight" states="assigned,progress,waiting,done"/>
-                    <field name="state" widget="statusbar" statusbar_visible="new,done"/>
+                    <field name="state_id" widget="statusbar"/>
                 </header>
                 <sheet>
                     <div>
@@ -34,20 +29,43 @@
                         <group name="left">
                             <field name="date"/>
                             <field name="date_due"/>
-                            <field name="user_id"/>
+                            <field name="user_id" options="{'no_create': True, 'no_open': True}"/>
                         </group>
                         <group name="right">
                             <field name="assigned"/>
+                            <field name="assigned_qty"/>
                             <field name="dedicated_time"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Main">
                             <group string="Description">
-                                <field name="description" nolabel="1"/>
+                                <field name="description" nolabel="1" colspan="2"/>
+                                <!-- <field name="tag_ids" nolabel="1" colspan="2"/> -->
+                                <field name="tag_ids" nolabel="1" colspan="2" options="{'no_create': True, 'no_quick_create': True}" widget="many2many_tags"  context="{'tree_view_ref': 'helpdesk_rafadm98.helpdesk_ticket_tag_tree_view', 'form_view_ref': 'helpdesk_rafadm98.helpdesk_ticket_tag_form_view'}"/>
+                                <!-- <field name="tag_ids" nolabel="1" colspan="2" widget="many2many_tags"/> -->
+                                <field name="related_tag_is" nolabel="1" colspan="2" context="{'tree_view_ref': 'helpdesk_rafadm98.helpdesk_ticket_tag_simple_tree_view', 'form_view_ref': 'helpdesk_rafadm98.helpdesk_ticket_tag_simple_form_view'}"/>
+                                <field name="new_tag_name"/>
+                                <button string="New Tag"
+                                    name="create_new_tag"
+                                    type="object"/>
                             </group>
                         </page>
                         <page string="Quality">
+                            <group string="Action">
+                                <field name="action_ids" nolabel="1" context="{'default_date':date}">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="date"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <field name="name"/>
+                                            <field name="date"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </group>
                             <group string="Corrective Action">
                                 <field name="corrective_action" nolabel="1"/>
                             </group>
@@ -60,10 +78,77 @@
             </form>
         </field>
     </record>
+    <record id="helpdesk_ticket_search_view" model="ir.ui.view">
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="user_id"/>
+                <filter name="assigned_tickets" string="Asigned"
+                    domain="[('assigned','=', True)]"/>
+                <filter name="without_date_due" string="Without date due"
+                    domain="[('date_due','=', False)]"/>
+                <filter string="Date due" name="date" context="{'group_by':'date_due'}"/>
+                <filter string="User assigned" name="user_assigned" context="{'group_by':'user_id'}"/>
+                <filter string="Tickets assigned" name="assigned" context="{'group_by':'assigned'}"/>
+                <filter string="User assigned with time dedicate" name="user_assigned_with_time" domain="['&amp;', ('assigned', '=', True), ('dedicated_time', '>', 0)]"/>
+                <filter string="User assigned or time dedicated" name="user_assigned_or_time" domain="['|', ('assigned', '=', True), ('dedicated_time', '>', 0)]" context="{'group_by':'user_id'}"/>
+            </search>
+        </field>
+    </record>
+    <record id="helpdesk_ticket_pivot_view" model="ir.ui.view">
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <pivot string="Helpdesk Ticket Pivot">
+                <field name="user_id" type="row"/>
+                <field name="dedicated_time" type="measure" widget="float_time"/>
+                <field name="date" interval="month" type="col"/>
+            </pivot>
+        </field>
+    </record>
+    <record id="helpdesk_ticket_graph_view" model="ir.ui.view">
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <graph string="Helpdesk Ticket Graph" type="pie">
+                <field name="user_id"/>
+                <field name="dedicated_time" type="measure" widget="float_time"/>
+            </graph>
+        </field>
+    </record>
+    <record id="helpdesk_ticket_calendar_view" model="ir.ui.view">
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <calendar string="Helpdesk Ticket Calendar" date_start="date" hide_time="true" event_limit="5">
+                <field name="name"/>
+                <field name="dedicated_time" widget="float_time"/>
+                <field name="user_id"/>
+            </calendar>
+        </field>
+    </record>
+    <record id="helpdesk_ticket_kanban_view" model="ir.ui.view">
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="user_id">
+                <field name="user_id"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_content">
+                                Name: <field name="name"/>
+                                <br/>
+                                User: <field name="user_id"/>
+                                <br/>
+                                Dedicated time: <field name="dedicated_time"/>
+                                <br/>
+                            </div>
+                        </t>
+                    </templates>
+            </kanban>
+        </field>
+    </record>
     <record id="helpdesk_ticket_action" model="ir.actions.act_window">
         <field name="name">Tickets</field>
         <field name="res_model">helpdesk.ticket</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,pivot,graph,calendar,kanban</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Click to create a new Ticket
