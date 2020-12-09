@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="helpdesk_ticket_tag_tree_view" model="ir.ui.view">
+        <field name="name">view.helpdesk_tag.tree</field>
+        <field name="model">helpdesk.tag</field>
+        <field name="arch" type="xml">
+            <tree string="Tags">
+                <field name="name"/>
+                <field name="ticket_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+    <record id="helpdesk_ticket_tag_form_view" model="ir.ui.view">
+        <field name="name">view.helpdesk_tag.form</field>
+        <field name="model">helpdesk.tag</field>
+        <field name="arch" type="xml">
+            <form string="Helpdesk Tag Form">
+                <sheet>
+                    <group name="Main">
+                        <field name="name"/>
+                        <field name="ticket_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="helpdesk_ticket_tag_simple_tree_view" model="ir.ui.view">
+        <field name="name">view.helpdesk_simple_tag.tree</field>
+        <field name="model">helpdesk.tag</field>
+        <field eval="20" name="priority"/>
+        <field name="arch" type="xml">
+            <tree string="Tags Ref">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="helpdesk_ticket_tag_simple_form_view" model="ir.ui.view">
+        <field name="name">view.helpdesk_simple_tag.form</field>
+        <field name="model">helpdesk.tag</field>
+        <field eval="20" name="priority"/>
+        <field name="arch" type="xml">
+            <form string="Helpdesk Tag Form">
+                <sheet>
+                    <group name="Main">
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="helpdesk_tag_action" model="ir.actions.act_window">
+        <field name="name">Tags</field>
+        <field name="res_model">helpdesk.tag</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new Tag
+            </p>
+        </field>
+    </record>
+    <menuitem id="helpdesk_tag_menu"
+        name="Tags"
+        action="helpdesk_tag_action"
+        parent="helpdesk_ticket_main_menu"
+        sequence="30"/>
+</odoo>
