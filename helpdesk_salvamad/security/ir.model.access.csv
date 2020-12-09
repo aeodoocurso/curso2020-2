@@ -1,3 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 helpdesk_ticket_user,Helpdesk ticket User,helpdesk_salvamad.model_helpdesk_ticket,helpdesk_salvamad.res_groups_helpdesk_user,1,0,0,0
 helpdesk_ticket_manager,Helpdesk ticket Manager,helpdesk_salvamad.model_helpdesk_ticket,helpdesk_salvamad.res_groups_helpdesk_user,1,1,1,1
+helpdesk_ticket_state_user,Helpdesk ticket State User,helpdesk_salvamad.model_helpdesk_ticket_state,helpdesk_salvamad.res_groups_helpdesk_user,1,0,0,0
+helpdesk_ticket_state_manager,Helpdesk ticket State Manager,helpdesk_salvamad.model_helpdesk_ticket_state,helpdesk_salvamad.res_groups_helpdesk_user,1,1,1,1
+helpdesk_ticket_action_user,Helpdesk ticket Action User,helpdesk_salvamad.model_helpdesk_ticket_action,helpdesk_salvamad.res_groups_helpdesk_user,1,0,0,0
+helpdesk_ticket_action_manager,Helpdesk ticket Action Manager,helpdesk_salvamad.model_helpdesk_ticket_action,helpdesk_salvamad.res_groups_helpdesk_user,1,1,1,1
+helpdesk_tag_user,Helpdesk tag User,helpdesk_salvamad.model_helpdesk_tag,helpdesk_salvamad.res_groups_helpdesk_user,1,0,0,0
+helpdesk_tag_manager,Helpdesk tag Manager,helpdesk_salvamad.model_helpdesk_tag,helpdesk_salvamad.res_groups_helpdesk_user,1,1,1,1
