@@ -17,21 +17,19 @@
       </field>
     </record>
 
-    <record id="view_helpdesk_ticket_action_search" model="ir.ui.view">
-      <field name="name">helpdesk_ticket_action.view.search</field>
+    <record id="helpdesk_gfunosas.view_helpdesk_action_simple_form" model="ir.ui.view">
+      <field name="name">helpdesk_action_simple.view.form</field>
       <field name="model">helpdesk.ticket.action</field>
+      <field eval="20" name="priority"/>
       <field name="arch" type="xml">
-        <search string="Actions">
-          <field name="name" />
-          <field name="date"/>
-          <field name="ticket_id" />
-          <group string="Group By" name="groupby">
-            <filter name="ticket_id_groupby" string="Ticket"
-              context="{'group_by': 'ticket_id'}" />
-              <filter name="date_groupby" string="Date"
-                context="{'group_by': 'date'}" />
-          </group>
-        </search>
+        <form string="Actions">
+          <sheet>
+            <group name="main">
+              <field name="name" />
+              <field name="date"/>
+            </group>
+          </sheet>
+        </form>
       </field>
     </record>
 
@@ -47,8 +45,23 @@
       </field>
     </record>
 
-    <record id="helpdesk_gfunosas.helpdesk_ticket_action_action"
-            model="ir.actions.act_window">
+    <record id="view_helpdesk_ticket_action_search" model="ir.ui.view">
+      <field name="name">helpdesk_ticket_action.view.search</field>
+      <field name="model">helpdesk.ticket.action</field>
+      <field name="arch" type="xml">
+        <search string="Actions">
+          <field name="name" />
+          <field name="date"/>
+          <field name="ticket_id" />
+          <group string="Group By" name="groupby">
+            <filter name="ticket_id_groupby" string="Ticket" context="{'group_by': 'ticket_id'}" />
+            <filter name="date_groupby" string="Date" context="{'group_by': 'date'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record id="helpdesk_gfunosas.helpdesk_ticket_action_action" model="ir.actions.act_window">
       <field name="name">Actions</field>
       <field name="res_model">helpdesk.ticket.action</field>
       <field name="view_mode">tree,form</field>
@@ -59,10 +72,7 @@
       </field>
     </record>
 
-    <menuitem id="helpdesk_gfunosas.helpdesk_ticket_action_menu"
-              parent="helpdesk_ticket_main_menu"
-              action="helpdesk_ticket_action_action"
-              sequence="20"/>
+    <menuitem id="helpdesk_gfunosas.helpdesk_ticket_action_menu" parent="helpdesk_ticket_main_menu" action="helpdesk_ticket_action_action" sequence="20"/>
 
   </data>
 </odoo>

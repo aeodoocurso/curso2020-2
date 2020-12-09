@@ -1,9 +1,15 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError, UserError
+from datetime import timedelta
 
 
 class HelpdeskTicket(models.Model):
+
+    def _default_user_id(self):
+        return self.env.user
+
     _name = 'helpdesk.ticket'
     _description = 'Helpdesk Ticket'
 
@@ -33,7 +39,7 @@ class HelpdeskTicket(models.Model):
         string="Date Due",)
 
     new_tag_name = fields.Char(
-        string = "New tag",)
+        string="New tag",)
 
     corrective_action = fields.Html(
         help='Detail of corrective action after this issue',)
@@ -43,7 +49,8 @@ class HelpdeskTicket(models.Model):
 
     user_id = fields.Many2one(
         "res.users",
-        string="Assigned to",)
+        string="Assigned to",
+        default=_default_user_id)
 
     state_id = fields.Many2one(
         'helpdesk.ticket.state',
@@ -57,24 +64,24 @@ class HelpdeskTicket(models.Model):
     tag_ids = fields.Many2many(
         'helpdesk.tag',
         string="Tags",
-        relation = 'helpdesk_ticket_tag_rel',
-        column1 = 'ticket_id',
-        column2 = 'tag_id',
-    )
+        relation='helpdesk_ticket_tag_rel',
+        column1='ticket_id',
+        column2='tag_id',)
 
     related_tag_ids = fields.Many2many(
         'helpdesk.tag',
         string='Related Tags',
         compute='_compute_related_tag_ids')
 
-
     def create_new_tag(self):
         self.ensure_one()
-        tag = self.env['helpdesk.tag'].create({
-            'name': self.new_tag_name
-        })
-        self.tag_ids += tag
-
+        action = self.env.ref(
+            'helpdesk_gfunosas.helpdesk_tag_new_action').read()[0]
+        action['context'] = {
+            'default_name': self.new_tag_name,
+            'default_ticket_ids': [(6, 0, self.ids)]
+        }
+        return action
 
     @api.depends('user_id')
     def _compute_assigned(self):
@@ -90,7 +97,6 @@ class HelpdeskTicket(models.Model):
             ])
             record.assigned_qty = len(same_user_id_tickets)
 
-
     @api.depends('user_id')
     def _compute_related_tag_ids(self):
         for record in self:
@@ -104,5 +110,18 @@ class HelpdeskTicket(models.Model):
                 'related_tag_ids': [(6, 0, all_tags.ids)]
             })
 
+    @api.constrains('dedicated_time')
+    def _check_dedicated_time(self):
+        for ticket in self:
+            if ticket.dedicated_time and ticket.dedicated_time < 0:
+                raise ValidationError("Time must be an integer greater than 0")
 
-
+    @api.onchange('date')
+    def _onchange_date(self):
+        if not self.date:
+            self.date_due = False
+        else:
+            if self.date < fields.Date.today():
+                raise UserError("You can't set a date before today")
+            date_datetime = fields.Date.from_string(self.date)
+            self.date_due = date_datetime + timedelta(days=1)

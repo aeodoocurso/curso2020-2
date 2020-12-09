@@ -57,7 +57,8 @@
                         </page>
                         <page string="Actions">
                             <group string="Actions">
-                                <field name="action_ids" nolabel="1"/>
+                                <field name="action_ids" nolabel="1"
+                                       context="{'form_view_ref':'helpdesk_gfunosas.view_helpdesk_action_simple_form'}"/>
                             </group>
                             <group string="Corrective Action">
                                 <field name="corrective_action" nolabel="1"/>

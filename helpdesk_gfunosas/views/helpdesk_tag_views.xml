@@ -22,6 +22,7 @@
             <field name="arch" type="xml">
                 <tree string="Tag">
                     <field name="name"/>
+                    <field name="ticket_ids" widget="many2many_tags"/>
                 </tree>
             </field>
         </record>
@@ -75,6 +76,13 @@
                     Click to create a new Tag.
                 </p>
             </field>
+        </record>
+
+        <record id="helpdesk_gfunosas.helpdesk_tag_new_action" model="ir.actions.act_window">
+            <field name="name">Tag</field>
+            <field name="res_model">helpdesk.tag</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
         </record>
 
         <menuitem id="helpdesk_gfunosas.helpdesk_tag_menu"
