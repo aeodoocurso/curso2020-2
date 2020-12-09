@@ -23,6 +23,7 @@ Helpdesk module that enables the feature of creating support tickets.
 		'views/helpdesk_ticket_views.xml',
 		'views/helpdesk_tag_views.xml',
 		'views/helpdesk_action_views.xml',
+		'data/helpdesk_data.xml',
 	],
 	"demo" : [
 	]

@@ -1,4 +1,6 @@
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError, UserError
+from datetime import timedelta
 
 class HelpdeskTicketState(models.Model):
 	_name = 'helpdesk.ticket.state'
@@ -21,6 +23,10 @@ class HelpdeskTicketTag(models.Model):
 		column2 = 'ticket_id',
 		string = 'Tickets')
 
+	@api.model
+	def _clean_all_tags(self):
+		tags_to_delete = self.search([('ticket_ids','=', False)])
+		tags_to_delete.unlink()
 
 class HelpdeskTicketAction(models.Model):
 	_name = 'helpdesk.ticket.action'
@@ -35,6 +41,9 @@ class HelpdeskTicketAction(models.Model):
 class HelpdeskTicket(models.Model):
 	_name = 'helpdesk.ticket'
 	_description = "Helpdesk Ticket"
+
+	def _default_user_id(self):
+		return self.env.user
 
 	name = fields.Char(
 		string = 'Name',
@@ -62,7 +71,8 @@ class HelpdeskTicket(models.Model):
 
 	user_id = fields.Many2one(
 		comodel_name = 'res.users',
-		string = 'Assigned to')
+		string = 'Assigned to',
+		default = _default_user_id)
 
 	due_date = fields.Date(
 		string = 'Due Date')
@@ -96,12 +106,13 @@ class HelpdeskTicket(models.Model):
 
 	def create_new_tag(self):
 		self.ensure_one()
-		tag = self.env['helpdesk.ticket.tag'].create({
-			'name' : self.new_tag_name
-		})
-		# For debugging purposes
-		# import wdb; wdb.set_trace()
-		self.tag_ids += tag
+		action = self.env.ref(
+			'helpdesk_jesusjmclue.helpdesk_ticket_new_tag_action').read()[0]
+		action['context'] = {
+			'default_name' : self.new_tag_name,
+			'default_ticket_ids' : [(6, 0, self.ids)]
+		}
+		return action
 
 
 	def set_assigned_multi(self):
@@ -158,4 +169,18 @@ class HelpdeskTicket(models.Model):
 				'related_tag_ids' : [(6, 0, all_tags.ids)]
 			})
 
+	@api.constrains('dedicated_time')
+	def _check_dedicated_time(self):
+		for ticket in self:
+			if ticket.dedicated_time and ticket.dedicated_time < 0:
+				raise ValidationError(_("Time must be positive."))
 	
+	@api.onchange('date')
+	def _onchange_date(self):
+		if not self.date:
+			self.due_date = False
+		else:
+			if self.date < fields.Date.today():
+				raise UserError(_("Date must not be in the past"))
+			date_datetime = fields.Date.from_string(self.date)
+			self.due_date = date_datetime + timedelta(1)
