@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-    Modulo para la gestion de incidencias 
+    Modulo para la gestion de incidencias
 """
-from odoo import api, fields, models
-
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError, ValidationError
+from datetime import timedelta
 
 class HelpdeskTicketState(models.Model):
     """
@@ -32,6 +33,11 @@ class HelpdeskTag(models.Model):
         column2="ticket_id",
         string="Tickets")
 
+    @api.model
+    def _clean_tags_all(self):
+        tags_to_delete = self.search([('ticket_ids', '=', False)])
+        tags_to_delete.unlink()
+
 
 class HelpdeskTicketAction(models.Model):
     """
@@ -50,6 +56,10 @@ class HelpdeskTicket(models.Model):
     """
         Modelo de los tickets
     """
+
+    def _default_user_id(self):
+        return self.env.user
+
     _name = "helpdesk.ticket"
     _description = "Helpdesk Ticket"
 
@@ -88,7 +98,8 @@ class HelpdeskTicket(models.Model):
 
     user_id = fields.Many2one(
         comodel_name="res.users",
-        string="Asignado a")
+        string="Asignado a",
+        default=_default_user_id)
 
     action_ids = fields.One2many(
         comodel_name="helpdesk.ticket.action",
@@ -180,3 +191,19 @@ class HelpdeskTicket(models.Model):
                 ("user_id", "=", user.id)
             ])
             record.num_asignados = len(tickets)
+    
+    @api.constrains('horas_dedicadas')
+    def _check_horas_dedicadas(self):
+        for ticket in self:
+            if ticket.horas_dedicadas and ticket.horas_dedicadas < 0:
+                raise ValidationError(_("El horas tiene que ser positivas."))
+
+    @api.onchange('date')
+    def _onchange_date(self):
+        if not self.date:
+            self.fecha_limite = False
+        else:
+            if self.date < fields.Date.today():
+                raise UserError(_("La fecha límitte tiene que ser hoy o superior."))
+            date_datetime = fields.Date.from_string(self.date)
+            self.fecha_limite = date_datetime + timedelta(1)
