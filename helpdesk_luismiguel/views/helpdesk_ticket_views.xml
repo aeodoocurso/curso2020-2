@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="view_helpdesk_ticket_tree" model="ir.ui.view">
+    <field name="name">view.helpdesk_ticket.tree</field>
+    <field name="model">helpdesk.ticket</field>
+    <field name="arch" type="xml">
+      <tree string="Tickets">
+        <field name="name" />
+        <field name="date" />
+        <field name="state_id" />
+        <field name="user_id" />
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_helpdesk_ticket_form" model="ir.ui.view">
+    <field name="name">view.helpdesk_ticket.form</field>
+    <field name="model">helpdesk.ticket</field>
+    <field name="arch" type="xml">
+      <form string="label">
+        <header>
+          <!-- <button string="Asignar" name="set_asignado" type="object" attrs="{'invisible': [('state', '!=', 'nuevo')]}" />
+          <button string="En proceso" name="set_enproceso" type="object" states="asignado"/>
+          <button string="Pendiente" name="set_pendiente" type="object" states="asignado,enproceso" />
+          <button string="Resuelto" name="set_resuelto" type="object" attrs="{'invisible': [('state', 'in', ('resuelto','cancelado'))]}" />
+          <button string="Cancelado" name="set_cancelado" type="object" attrs="{'invisible': [('state', '=', 'cancelado')]}" />
+          <field name="state" widget="statusbar" statusbar_visible="nuevo,resuelto" /> -->
+          <field name="state_id" widget="statusbar" />
+        </header>
+        <sheet>
+          <h1>
+            Ticket #<field name="name" class="oe_inline" />
+          </h1>
+          <group name="main">
+            <group name="left">
+              <field name="date" />
+              <field name="fecha_limite" />
+            </group>
+            <group name="right">
+              <field name="user_id" />
+              <field name="asignado" />
+              <field name="num_asignados" />
+              <field name="horas_dedicadas" widget="float_time" />
+            </group>
+          </group>
+          <notebook>
+            <page string="Princial">
+              <group string="Descripción">
+                <field name="description" nolabel="1" colspan="2" />
+                <field name="tag_ids" nolabel="1" options="{'no_quick_create': True}" widget="many2many_tags" colspan="2" />
+                <field name="tag_relacionado_ids" nolabel="1" colspan="2" context="{'tree_view_ref':'helpdesk_luismiguel.view_helpdesk_tag_simple_tree', 'form_view_ref':'helpdesk_luismiguel.view_helpdesk_tag_simple_form'}"/>
+                <field name="nombre_nuevo_tag" />
+                <button string="Nueva etiqueta"
+                  name="crear_nuevo_tag"
+                  type="object" />
+              </group>
+            </page>
+            <page string="Calidad">
+              <group string="Acciones">
+                <field name='action_ids' nolabel="1" context="{'default_date':date}">
+                  <tree editable="bottom">
+                    <field name="name"/>
+                    <field name="date"/>
+                  </tree>
+                </field>
+              </group>
+              <group string="Acción correctiva">
+                <field name="accion_correctiva" nolabel="1" />
+              </group>
+              <group string="Acción preventiva">
+                <field name="accion_preventiva" nolabel="1" />
+              </group>
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_helpdesk_ticket_search" model="ir.ui.view">
+    <field name="name">view.helpdesk.ticket.search</field>
+    <field name="model">helpdesk.ticket</field>
+    <field name="arch" type="xml">
+      <search string="Ticket">
+        <field name="name" />
+        <field name="user_id" />
+        <filter name="asignado" string="Asignado" domain="[('asignado', '=', True)]" />
+        <filter name="fecha_limite" string="Sin fecha limite" domain="[('fecha_limite', '=', None)]" />
+        <group string="Group By" name="groupby">
+          <filter name="user_id_groupby" string="Usuario"
+            context="{'group_by': 'user_id'}" />
+        </group>
+      </search>
+    </field>
+  </record>
+
+  <record id="view_helpdesk_ticket_pivot" model="ir.ui.view">
+    <field name="name">view.helpdesk.ticket.pivot</field>
+    <field name="model">helpdesk.ticket</field>
+    <field name="arch" type="xml">
+      <pivot string="Ticket">
+        <field name="user_id" type="row" />
+        <field name="date" type="col" />
+        <field name="horas_dedicadas" type="measure" widget="float_time" />
+      </pivot>
+    </field>
+  </record>
+
+  <record id="view_helpdesk_ticket_graph" model="ir.ui.view">
+    <field name="name">view.helpdesk.ticket.graph</field>
+    <field name="model">helpdesk.ticket</field>
+    <field name="arch" type="xml">
+      <graph string="Ticket">
+        <field name="user_id" />
+        <field name="horas_dedicadas" type="measure" />
+      </graph>
+    </field>
+  </record>
+
+  <record id="view_helpdesk_ticket_calendar" model="ir.ui.view">
+    <field name="name">view.helpdesk.ticket.calendar</field>
+    <field name="model">helpdesk.ticket</field>
+    <field name="arch" type="xml">
+      <calendar string="Ticket" date_start="date" hide_time="true" color="user_id">
+        <field name="user_id" />
+        <field name="name" invisible="1" />
+        <field name="horas_dedicadas" invisible="1" />
+      </calendar>
+    </field>
+  </record>
+
+  <record id="helpdesk_ticket_action" model="ir.actions.act_window">
+    <field name="name">Tickets</field>
+    <field name="res_model">helpdesk.ticket</field>
+    <field name="view_mode">tree,form,pivot,graph,calendar</field>
+    <field name="help" type="html">
+      <p class="oe_view_nocontent_create">
+        Click to create a new Tickets.
+      </p>
+    </field>
+  </record>
+
+  <menuitem id="helpdesk_root_menu" name="Helpdesk" sequence="10" web_icon="helpdesk_luismiguel,static/description/icon.png"/>
+
+  <menuitem id="helpdesk_ticket_main_menu" name="Helpdesk" parent="helpdesk_root_menu"  sequence="10"/>
+
+  <menuitem id="helpdesk_ticket_menu" parent="helpdesk_ticket_main_menu" action="helpdesk_ticket_action" sequence="10"/>
+
+</odoo>
