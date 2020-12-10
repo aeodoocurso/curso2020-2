@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    Modulo para la gestion de incidencias
+    Modulo para la gestion de incidencias 
 """
 from odoo import api, fields, models
 
