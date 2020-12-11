@@ -18,6 +18,7 @@
         "security/ir.model.access.csv",
         "views/helpdesk_ticket_views.xml",
         "views/helpdesk_tag_views.xml",
+        "data/helpdesk_data.xml",
     ],
     "demo": [
     ]
