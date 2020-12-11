@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+helpdesk_tag_user,Helpesk Tag User,helpdesk_gfunosas.model_helpdesk_tag,res_groups_helpdesk_user,1,0,0,0
+helpdesk_tag_manager,Helpesk Tag Manager,helpdesk_gfunosas.model_helpdesk_tag,res_groups_helpdesk_manager,1,1,1,1
+helpdesk_ticket_action_user,Helpesk Ticket Action User,helpdesk_gfunosas.model_helpdesk_ticket_action,res_groups_helpdesk_user,1,0,0,0
+helpdesk_ticket_action_manager,Helpesk Ticket Action Manager,helpdesk_gfunosas.model_helpdesk_ticket_action,res_groups_helpdesk_manager,1,1,1,1
+helpdesk_ticket_state_user,Helpesk Ticket State User,helpdesk_gfunosas.model_helpdesk_ticket_state,res_groups_helpdesk_user,1,0,0,0
+helpdesk_ticket_state_manager,Helpesk Ticket State Manager,helpdesk_gfunosas.model_helpdesk_ticket_state,res_groups_helpdesk_manager,1,1,1,1
+helpdesk_ticket_user,Helpesk Ticket User,helpdesk_gfunosas.model_helpdesk_ticket,res_groups_helpdesk_user,1,0,0,0
+helpdesk_ticket_manager,Helpesk Ticket Manager,helpdesk_gfunosas.model_helpdesk_ticket,res_groups_helpdesk_manager,1,1,1,1

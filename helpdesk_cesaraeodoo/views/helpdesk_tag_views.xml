@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!-- tree view -->
+        <record id="view_helpdesk_tag_tree" model="ir.ui.view">
+            <field name="name">helpdesk.tag.tree</field>
+            <field name="model">helpdesk.tag</field>
+            <field name="arch" type="xml">
+                <tree string="Tag">
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- form view -->
+        <record id="view_helpdesk_tag_form" model="ir.ui.view">
+            <field name="name">helpdesk.tag.form</field>
+            <field name="model">helpdesk.tag</field>
+            <field name="arch" type="xml">
+                <form string="Tag">
+                    <sheet>
+                        <group name="main">
+                            <field name="name" />
+                            <field name="ticket_ids"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- windows actions -->
+        <record id="helpdesk_tag_action" model="ir.actions.act_window">
+            <field name="name">Tag</field>
+            <field name="res_model">helpdesk.tag</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create a new Tag.
+                </p>
+            </field>
+        </record>
+
+        <!-- Menus -->
+        <menuitem id="helpdesk_tag_menu"
+                  parent="helpdesk_ticket_main_menu"
+                  action="helpdesk_tag_action"
+                  sequence="50"/>
+
+</odoo>

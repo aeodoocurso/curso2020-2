@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+helpdesk_ticket_user,Helpdesk ticket User,helpdesk_rafadm98.model_helpdesk_ticket,res_groups_helpdesk_user,1,0,0,0
+helpdesk_ticket_manager,Helpdesk ticket Manager,helpdesk_rafadm98.model_helpdesk_ticket,res_groups_helpdesk_manager,1,1,1,1
