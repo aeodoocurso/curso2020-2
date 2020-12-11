@@ -1,0 +1,223 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* helpdesk_gfunosas
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-27 17:31+0000\n"
+"PO-Revision-Date: 2020-11-27 17:31+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: helpdesk_gfunosas
+#: model:res.groups,comment:helpdesk_gfunosas.res_groups_helpdesk_user
+msgid ""
+"\n"
+"        The user will be able to browse some models.\n"
+"    "
+msgstr ""
+
+#. module: helpdesk_gfunosas
+#: model:res.groups,comment:helpdesk_gfunosas.res_groups_helpdesk_manager
+msgid ""
+"\n"
+"        El usuario podrá visualizar algunos modelos .\n"
+"    "
+msgstr ""
+
+#. module: helpdesk_gfunosas
+#: model_terms:ir.ui.view,arch_db:helpdesk_gfunosas.ticket_form_view
+msgid "Assign"
+msgstr "Asignar"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields,field_description:helpdesk_gfunosas.field_helpdesk_ticket__assigned
+#: model:ir.model.fields.selection,name:helpdesk_gfunosas.selection__helpdesk_ticket__state__assigned
+msgid "Assigned"
+msgstr "Asignado"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields,field_description:helpdesk_gfunosas.field_helpdesk_ticket__user_id
+msgid "Assigned to"
+msgstr ""
+
+#. module: helpdesk_gfunosas
+#: model_terms:ir.ui.view,arch_db:helpdesk_gfunosas.ticket_form_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields.selection,name:helpdesk_gfunosas.selection__helpdesk_ticket__state__cancelled
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: helpdesk_gfunosas
+#: model_terms:ir.actions.act_window,help:helpdesk_gfunosas.ticket_action
+msgid "Click to create a new Ticket"
+msgstr "Pulsa para crear un nuevo tiquet"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields,field_description:helpdesk_gfunosas.field_helpdesk_ticket__corrective_action
+#: model_terms:ir.ui.view,arch_db:helpdesk_gfunosas.ticket_form_view
+msgid "Corrective Action"
+msgstr "Acción correctiva"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields,field_description:helpdesk_gfunosas.field_helpdesk_ticket__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields,field_description:helpdesk_gfunosas.field_helpdesk_ticket__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields,field_description:helpdesk_gfunosas.field_helpdesk_ticket__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields,field_description:helpdesk_gfunosas.field_helpdesk_ticket__date_due
+msgid "Date Due"
+msgstr "Fecha de vencimiento"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields,field_description:helpdesk_gfunosas.field_helpdesk_ticket__description
+#: model_terms:ir.ui.view,arch_db:helpdesk_gfunosas.ticket_form_view
+msgid "Description"
+msgstr "Descripción"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields,help:helpdesk_gfunosas.field_helpdesk_ticket__corrective_action
+msgid "Detail of corrective action after this issue"
+msgstr "Detalles de la acción correctiva tras la incidencia"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields,help:helpdesk_gfunosas.field_helpdesk_ticket__preventive_action
+msgid "Detail of preventive action after this issue"
+msgstr "Detalles de la acción preventiva tras la incidencia"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields,field_description:helpdesk_gfunosas.field_helpdesk_ticket__display_name
+msgid "Display Name"
+msgstr "Mostrar nombre"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields.selection,name:helpdesk_gfunosas.selection__helpdesk_ticket__state__done
+#: model_terms:ir.ui.view,arch_db:helpdesk_gfunosas.ticket_form_view
+msgid "Done"
+msgstr "Hecho"
+
+#. module: helpdesk_gfunosas
+#: model:ir.module.category,name:helpdesk_gfunosas.ir_module_category_helpdesk
+#: model:ir.ui.menu,name:helpdesk_gfunosas.helpdesk_root_menu
+#: model:ir.ui.menu,name:helpdesk_gfunosas.helpdesk_ticket_main_menu
+msgid "Helpdesk"
+msgstr "Helpdesk"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model,name:helpdesk_gfunosas.model_helpdesk_ticket
+msgid "Helpdesk Ticket"
+msgstr "Tíquet de helpdesk"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields,field_description:helpdesk_gfunosas.field_helpdesk_ticket__id
+msgid "ID"
+msgstr "ID"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields,field_description:helpdesk_gfunosas.field_helpdesk_ticket____last_update
+msgid "Last Modified on"
+msgstr "Fecha de última modificación"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields,field_description:helpdesk_gfunosas.field_helpdesk_ticket__write_uid
+msgid "Last Updated by"
+msgstr "Última modificación de"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields,field_description:helpdesk_gfunosas.field_helpdesk_ticket__write_date
+msgid "Last Updated on"
+msgstr "Fecha de última actualización"
+
+#. module: helpdesk_gfunosas
+#: model_terms:ir.ui.view,arch_db:helpdesk_gfunosas.ticket_form_view
+msgid "Main"
+msgstr "Principal"
+
+#. module: helpdesk_gfunosas
+#: model:res.groups,name:helpdesk_gfunosas.res_groups_helpdesk_manager
+msgid "Manager"
+msgstr "Administrador"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields,field_description:helpdesk_gfunosas.field_helpdesk_ticket__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields.selection,name:helpdesk_gfunosas.selection__helpdesk_ticket__state__new
+msgid "New"
+msgstr "Nuevo"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields,field_description:helpdesk_gfunosas.field_helpdesk_ticket__preventive_action
+#: model_terms:ir.ui.view,arch_db:helpdesk_gfunosas.ticket_form_view
+msgid "Preventive Action"
+msgstr "Acción preventiva"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields.selection,name:helpdesk_gfunosas.selection__helpdesk_ticket__state__progress
+#: model_terms:ir.ui.view,arch_db:helpdesk_gfunosas.ticket_form_view
+msgid "Progress"
+msgstr "En progreso"
+
+#. module: helpdesk_gfunosas
+#: model_terms:ir.ui.view,arch_db:helpdesk_gfunosas.ticket_form_view
+msgid "Actions"
+msgstr "Acciones"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields,field_description:helpdesk_gfunosas.field_helpdesk_ticket__state
+msgid "State"
+msgstr "Estado"
+
+#. module: helpdesk_gfunosas
+#: model_terms:ir.ui.view,arch_db:helpdesk_gfunosas.ticket_form_view
+msgid "Ticket #"
+msgstr "Tíquet #"
+
+#. module: helpdesk_gfunosas
+#: model_terms:ir.ui.view,arch_db:helpdesk_gfunosas.ticket_form_view
+msgid "Ticket Form"
+msgstr "Tíquets de"
+
+#. module: helpdesk_gfunosas
+#: model:ir.actions.act_window,name:helpdesk_gfunosas.ticket_action
+#: model:ir.ui.menu,name:helpdesk_gfunosas.helpdesk_ticket_menu
+#: model_terms:ir.ui.view,arch_db:helpdesk_gfunosas.ticket_tree_view
+msgid "Tickets"
+msgstr "Tíquets"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields,field_description:helpdesk_gfunosas.field_helpdesk_ticket__dedicated_time
+msgid "Time"
+msgstr "Tiempo"
+
+#. module: helpdesk_gfunosas
+#: model:res.groups,name:helpdesk_gfunosas.res_groups_helpdesk_user
+msgid "User"
+msgstr "Usuario"
+
+#. module: helpdesk_gfunosas
+#: model:ir.model.fields.selection,name:helpdesk_gfunosas.selection__helpdesk_ticket__state__waiting
+#: model_terms:ir.ui.view,arch_db:helpdesk_gfunosas.ticket_form_view
+msgid "Waiting"
+msgstr "En espera"

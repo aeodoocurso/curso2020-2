@@ -1,0 +1,218 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* helpdesk_cesaraeodoo
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-25 16:25+0000\n"
+"PO-Revision-Date: 2020-11-25 16:25+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: helpdesk_cesaraeodoo
+#: model:res.groups,comment:helpdesk_cesaraeodoo.res_groups_helpdesk_user
+msgid ""
+"\n"
+"        The user will be able to browse some model.\n"
+"    "
+msgstr ""
+
+#. module: helpdesk_cesaraeodoo
+#: model:res.groups,comment:helpdesk_cesaraeodoo.res_groups_helpdesk_manager
+msgid ""
+"\n"
+"        The user will be able to manage some model.\n"
+"    "
+msgstr ""
+
+#. module: helpdesk_cesaraeodoo
+#: model_terms:ir.ui.view,arch_db:helpdesk_cesaraeodoo.ticket_form_view
+msgid "Assign"
+msgstr "Asignar"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields,field_description:helpdesk_cesaraeodoo.field_helpdesk_ticket__assigned
+#: model:ir.model.fields.selection,name:helpdesk_cesaraeodoo.selection__helpdesk_ticket__state__assigned
+msgid "Assigned"
+msgstr "Asignado"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields,field_description:helpdesk_cesaraeodoo.field_helpdesk_ticket__user_id
+msgid "Assigned to"
+msgstr "Asignado a"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields.selection,name:helpdesk_cesaraeodoo.selection__helpdesk_ticket__state__cancel
+#: model_terms:ir.ui.view,arch_db:helpdesk_cesaraeodoo.ticket_form_view
+msgid "Cancel"
+msgstr "Cancelado"
+
+#. module: helpdesk_cesaraeodoo
+#: model_terms:ir.actions.act_window,help:helpdesk_cesaraeodoo.helpdesk_action_view
+msgid "Click to create a new Ticket"
+msgstr "Haz click para crear un nuevo ticket"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields,field_description:helpdesk_cesaraeodoo.field_helpdesk_ticket__corrective_action
+#: model_terms:ir.ui.view,arch_db:helpdesk_cesaraeodoo.ticket_form_view
+msgid "Corrective Action"
+msgstr "Action Correctiva"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields,field_description:helpdesk_cesaraeodoo.field_helpdesk_ticket__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields,field_description:helpdesk_cesaraeodoo.field_helpdesk_ticket__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields,field_description:helpdesk_cesaraeodoo.field_helpdesk_ticket__date
+#: model:ir.model.fields,field_description:helpdesk_cesaraeodoo.field_helpdesk_ticket__state
+msgid "Date"
+msgstr "Fecha"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields,help:helpdesk_cesaraeodoo.field_helpdesk_ticket__corrective_action
+msgid "Default of corrective action after this issue"
+msgstr "Accion correctiva por defecto después de esta situación"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields,help:helpdesk_cesaraeodoo.field_helpdesk_ticket__preventive_action
+msgid "Default of preventive action after this issue"
+msgstr "Accion preventiva por defecto después de esta situación"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields,field_description:helpdesk_cesaraeodoo.field_helpdesk_ticket__description
+#: model_terms:ir.ui.view,arch_db:helpdesk_cesaraeodoo.ticket_form_view
+msgid "Description"
+msgstr "Descripcion"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields,field_description:helpdesk_cesaraeodoo.field_helpdesk_ticket__display_name
+msgid "Display Name"
+msgstr "Nombre display"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields.selection,name:helpdesk_cesaraeodoo.selection__helpdesk_ticket__state__done
+#: model_terms:ir.ui.view,arch_db:helpdesk_cesaraeodoo.ticket_form_view
+msgid "Done"
+msgstr "Hecho"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields,field_description:helpdesk_cesaraeodoo.field_helpdesk_ticket__due_date
+msgid "Due Date"
+msgstr "Fecha de vencimiento"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.ui.menu,name:helpdesk_cesaraeodoo.helpdesk_root_menu
+#: model:ir.ui.menu,name:helpdesk_cesaraeodoo.helpdesk_ticket_main_menu
+msgid "HelpDesk"
+msgstr ""
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model,name:helpdesk_cesaraeodoo.model_helpdesk_ticket
+msgid "HelpDesk Ticket"
+msgstr ""
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.module.category,name:helpdesk_cesaraeodoo.ir_module_category_helpdesk
+msgid "Helpdesk"
+msgstr ""
+
+#. module: helpdesk_cesaraeodoo
+#: model_terms:ir.ui.view,arch_db:helpdesk_cesaraeodoo.ticket_form_view
+msgid "Helpdesk Ticket Form"
+msgstr ""
+
+#. module: helpdesk_cesaraeodoo
+#: model_terms:ir.ui.view,arch_db:helpdesk_cesaraeodoo.ticket_tree_view
+msgid "Helpdesk Ticket Tree"
+msgstr ""
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields,field_description:helpdesk_cesaraeodoo.field_helpdesk_ticket__id
+msgid "ID"
+msgstr ""
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields,field_description:helpdesk_cesaraeodoo.field_helpdesk_ticket____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields,field_description:helpdesk_cesaraeodoo.field_helpdesk_ticket__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields,field_description:helpdesk_cesaraeodoo.field_helpdesk_ticket__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: helpdesk_cesaraeodoo
+#: model_terms:ir.ui.view,arch_db:helpdesk_cesaraeodoo.ticket_form_view
+msgid "Main"
+msgstr "Principal"
+
+#. module: helpdesk_cesaraeodoo
+#: model:res.groups,name:helpdesk_cesaraeodoo.res_groups_helpdesk_manager
+msgid "Manager"
+msgstr "Responsable"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields,field_description:helpdesk_cesaraeodoo.field_helpdesk_ticket__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields.selection,name:helpdesk_cesaraeodoo.selection__helpdesk_ticket__state__new
+msgid "New"
+msgstr "Nuevo"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields,field_description:helpdesk_cesaraeodoo.field_helpdesk_ticket__preventive_action
+#: model_terms:ir.ui.view,arch_db:helpdesk_cesaraeodoo.ticket_form_view
+msgid "Preventive Action"
+msgstr "Acción preventiva"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields.selection,name:helpdesk_cesaraeodoo.selection__helpdesk_ticket__state__progress
+#: model_terms:ir.ui.view,arch_db:helpdesk_cesaraeodoo.ticket_form_view
+msgid "Progress"
+msgstr "Progreso"
+
+#. module: helpdesk_cesaraeodoo
+#: model_terms:ir.ui.view,arch_db:helpdesk_cesaraeodoo.ticket_form_view
+msgid "Quality"
+msgstr "Calidad"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.actions.act_window,name:helpdesk_cesaraeodoo.helpdesk_action_view
+#: model:ir.ui.menu,name:helpdesk_cesaraeodoo.helpdesk_ticket_menu
+msgid "Ticket"
+msgstr "Ticket"
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields,field_description:helpdesk_cesaraeodoo.field_helpdesk_ticket__dedicated_time
+msgid "Time"
+msgstr "Tiempo"
+
+#. module: helpdesk_cesaraeodoo
+#: model:res.groups,name:helpdesk_cesaraeodoo.res_groups_helpdesk_user
+msgid "User"
+msgstr ""
+
+#. module: helpdesk_cesaraeodoo
+#: model:ir.model.fields.selection,name:helpdesk_cesaraeodoo.selection__helpdesk_ticket__state__waiting
+#: model_terms:ir.ui.view,arch_db:helpdesk_cesaraeodoo.ticket_form_view
+msgid "Waiting"
+msgstr "Esperando"
