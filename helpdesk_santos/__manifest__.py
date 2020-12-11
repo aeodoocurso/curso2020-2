@@ -26,7 +26,8 @@ You could use this simplified accounting in case you work with an (external) acc
         'security/ir.model.access.csv',
         'views/helpdesk_ticket_views.xml',
         'views/helpdesk_tag_views.xml',
-        'views/helpdesk_action_views.xml'
+        'views/helpdesk_action_views.xml',
+        'data/helpdesk_data.xml',
     ],
     "demo": [
     ]
