@@ -94,6 +94,11 @@ class HelpdeskTicket(models.Model):
         string='Tags',
         domain=[('name', 'like', 'a')])
 
+    related_tag_is = fields.Many2many(
+        comodel_name='helpdesk.tag',
+        string='Related Tags',
+        compute='_compute_related_tag_ids')
+
     new_tag_name = fields.Char(
         string="New Tag")
 
@@ -106,6 +111,7 @@ class HelpdeskTicket(models.Model):
         # self.write({
             # 'tag_ids': [(4, tag.id, 0)]
         # })
+        import wdb; wdb.set_trace()
         self.tag_ids = self.tag_ids + tag
 
     # def set_assigned_multi(self):
@@ -149,3 +155,16 @@ class HelpdeskTicket(models.Model):
                 ('user_id', '=', user.id)
             ])
             record.assigned_qty = len(other_tickets)
+
+    @api.depends('user_id')
+    def _compute_related_tag_ids(self):
+        for record in self:
+            user = record.user_id
+            other_tickers = self.env['helpdesk.ticket'].search([
+            ('user_id', '=', user.id)
+            ])
+            all_tag = other_tickers.mapped('tag_ids')
+            # self.related_tag_is = all_tag
+            self.update({
+            'related_tag_is': [(6,0,all_tag.ids)]
+            })

@@ -50,6 +50,7 @@
               <group string="Description">
                 <field name="description" nolabel="1" colspan="2"/>
                 <field name="tag_ids" nolabel="1" colspan='2' options="{'no_quick_create': True}" widget="many2many_tags" domain="[('ticket', '=', True)]" context="{'default_ticket': True}"/>
+                <field name="related_tag_is" nolabel="1" colspan='2' context="{'tree_view_ref':'helpdesk_enriquelopez.view_helpdesk_tag_simple_tree', 'form_view_ref':'helpdesk_enriquelopez.view_helpdesk_tag_simple_form'}"/>
                 <field name="new_tag_name"/>
                 <button string="New Tag" name="create_new_tag" type="object"/>
               </group>
