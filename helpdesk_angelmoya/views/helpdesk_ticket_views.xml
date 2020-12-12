@@ -19,11 +19,6 @@
     <field name="arch" type="xml">
       <form string="label">
         <header>
-          <!-- <button string="Assingn" name="set_assigned" type="object" />
-          <button string="Progress" name="set_progress" type="object" />
-          <button string="Waiting" name="set_waiting" type="object" />
-          <button string="Done" name="set_done" type="object" />
-          <button string="Cancel" name="set_cancel" type="object" /> -->
           <field name="state_id" widget="statusbar"/>
         </header>
         <sheet>
@@ -42,17 +37,17 @@
               <field name="user_id" options="{'no_create': True, 'no_open': True}"/>
               <field name="assigned"/>
               <field name="assigned_qty"/>
-              <field name="dedicated_time" widget="float_time"/>
+              <field name="dedicated_time"/>
             </group>
           </group>
           <notebook>
             <page string="Main">
               <group string="Description">
-                <field name="description" nolabel="1" colspan="2"/>
+                <field name='description' nolabel="1" colspan='2'/>
                 <field name="tag_ids" nolabel="1" colspan='2' options="{'no_quick_create': True}" widget="many2many_tags" domain="[('ticket', '=', True)]" context="{'default_ticket': True}"/>
-                <field name="related_tag_is" nolabel="1" colspan='2' context="{'tree_view_ref':'helpdesk_enriquelopez.view_helpdesk_tag_simple_tree', 'form_view_ref':'helpdesk_enriquelopez.view_helpdesk_tag_simple_form'}"/>
+                <field name="related_tag_is" nolabel="1" colspan='2' context="{'tree_view_ref':'helpdesk_angelmoya.view_helpdesk_tag_simple_tree', 'form_view_ref':'helpdesk_angelmoya.view_helpdesk_tag_simple_form'}"/>
                 <field name="new_tag_name"/>
-                <button string="New Tag" name="create_new_tag" type="object"/>
+                <button string="New tag" name="create_new_tag" type="object"/>
               </group>
             </page>
             <page string="Quality">
@@ -62,19 +57,13 @@
                     <field name="name"/>
                     <field name="date"/>
                   </tree>
-                  <!-- <form>
-                    <group name="action">
-                      <field name="name"/>
-                      <field name="date"/>
-                    </group>
-                  </form> -->
                 </field>
               </group>
               <group string="Corrective Action">
-                <field name="corrective_action" nolabel="1"/>
+                <field name='corrective_action' nolabel="1"/>
               </group>
               <group string="Preventive Action">
-                <field name="preventive_action" nolabel="1"/>
+                <field name='preventive_action' nolabel="1"/>
               </group>
             </page>
           </notebook>
@@ -91,11 +80,12 @@
         <field name="name"/>
         <field name="user_id"/>
         <separator/>
-        <filter name="assigned" string="Assigned" domain="[('assigned', '=', True)]"/>
-        <filter name="without_due" string="Without due" domain="[('date_due', '=', False)]"/>
-        <filter string="Assigned" name="type" context="{'group_by':'assigned'}"/>
+        <filter name='assigned' string='Assigned' domain="[('assigned', '=', True)]"/>
+        <filter name='with_time' string='With time' domain="[('dedicated_time', '>', 0)]"/>
+        <filter name='assiggend_with_time' string='Assigned With time' domain="['&amp;', ('assigned', '=', True),('dedicated_time', '>', 0)]"/>
+        <filter name='assiggend_or_time' string='Assigned Or time' domain="['|', ('assigned', '=', True),('dedicated_time', '>', 0)]"/>
         <separator/>
-        <filter string="Date_due" name="type" context="{'group_by':'date_due'}"/>
+        <filter string="Assigned" name="type" context="{'group_by':'assigned'}"/>
       </search>
     </field>
   </record>
@@ -141,9 +131,10 @@
       <kanban default_group_by="user_id" class="o_kanban_small_column o_opportunity_kanban" on_create="quick_create" archivable="false">
         <field name="user_id"/>
         <templates>
-          <t t-name="kanban-box" widget="color">
+          <t t-name="kanban-box">
             <div class="oe_kanban_global_click">
               <div class="o_dropdown_kanban dropdown">
+
                 <a class="dropdown-toggle o-no-caret btn" role="button" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
                   <span class="fa fa-ellipsis-v"/>
                 </a>
@@ -182,19 +173,21 @@
     </field>
   </record>
 
-  <record id="helpdesk_ticket_action" model="ir.actions.act_window">
+  <record id="helpdest_ticket_action" model="ir.actions.act_window">
     <field name="name">Tickets</field>
     <field name="res_model">helpdesk.ticket</field>
-    <field name="view_mode">tree,pivot,graph,calendar,kanban,form</field>
+    <field name="view_mode">kanban,tree,pivot,graph,calendar,form</field>
     <field name="help" type="html">
-      <p class="o_view_nocontent_create">
-        Click to create a new Ticket
+      <p class="oe_view_nocontent_create">
+        Click to create a new Tickets.
       </p>
     </field>
   </record>
 
-  <menuitem id="helpdesk_root_menu" name="Helpdesk" sequence="10"/>
-  <menuitem id="helpdesk_ticket_main_menu" name="Helpdesk" parent="helpdesk_root_menu" sequence="10"/>
-  <menuitem id="helpdesk_ticket_menu" parent="helpdesk_ticket_main_menu" action="helpdesk_ticket_action" sequence="10"/>
+  <menuitem id="helpdest_root_menu" name="Helpdesk" sequence="10"/>
+
+  <menuitem id="helpdest_ticket_main_menu" name="Helpdesk" parent="helpdest_root_menu" sequence="10"/>
+
+  <menuitem id="helpdest_ticket_menu" parent="helpdest_ticket_main_menu" action="helpdest_ticket_action" sequence="10"/>
 
 </odoo>
