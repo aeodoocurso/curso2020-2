@@ -80,6 +80,13 @@
             </field>
         </record>
 
+        <record id="helpdesk_tag_new_action" model="ir.actions.act_window">
+            <field name="name">Tag</field>
+            <field name="res_model">helpdesk.tag</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
         <menuitem id="helpdesk_tag_menu" parent="helpdesk_ticket_main_menu"
             action="helpdesk_tag_action" sequence="20"/>
 
