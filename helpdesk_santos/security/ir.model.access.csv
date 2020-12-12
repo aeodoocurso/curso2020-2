@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+helpdesk_ticket_user,Helpesk ticket User,helpdesk_santos.model_helpdesk_ticket,helpdesk_santos.res_groups_helpdesk_user,1,0,0,0
+helpdesk_ticket_manager,Helpesk ticket Manager,helpdesk_santos.model_helpdesk_ticket,helpdesk_santos.res_groups_helpdesk_manager,1,1,1,1
+helpdesk_ticket_state_user,Helpesk ticket State User,helpdesk_santos.model_helpdesk_ticket_state,helpdesk_santos.res_groups_helpdesk_user,1,0,0,0
+helpdesk_ticket_state_manager,Helpesk ticket State Manager,helpdesk_santos.model_helpdesk_ticket_state,helpdesk_santos.res_groups_helpdesk_manager,1,1,1,1
+helpdesk_ticket_action_user,Helpesk ticket Action User,helpdesk_santos.model_helpdesk_ticket_action,helpdesk_santos.res_groups_helpdesk_user,1,0,0,0
+helpdesk_ticket_action_manager,Helpesk ticket Action Manager,helpdesk_santos.model_helpdesk_ticket_action,helpdesk_santos.res_groups_helpdesk_manager,1,1,1,1
+helpdesk_tag_user,Helpesk tag User,helpdesk_santos.model_helpdesk_tag,helpdesk_santos.res_groups_helpdesk_user,1,0,0,0
+helpdesk_tag_manager,Helpesk tag Manager,helpdesk_santos.model_helpdesk_tag,helpdesk_santos.res_groups_helpdesk_manager,1,1,1,1
+

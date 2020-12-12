@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<!--
 
-
-                due_date
-                corrective_action
-
--->
     <!-- tree view -->
     <record id="helpdesk_cesaraeodoo.ticket_tree_view" model="ir.ui.view">
         <field name="name">helpdesk.ticket.tree</field>
@@ -15,7 +9,6 @@
             <tree string="Helpdesk Ticket Tree">
                 <field name="name"/>
                 <field name="date"/>
-                <field name="state"/>
                 <field name="description"/>
             </tree>
         </field>
@@ -28,12 +21,6 @@
         <field name="arch" type="xml">
             <form string="Helpdesk Ticket Form">
                 <header>
-                    <button string="Assign" name="set_assigned" type="object" attrs="{'invisible':[('state', '!=', 'new')]}"/>
-                    <button string="Progress" name="set_progress" type="object"/>
-                    <button string="Waiting" name="set_waiting" type="object"/>
-                    <button string="Done" name="set_done" type="object"/>
-                    <button string="Cancel" name="set_cancel" type="object"/>
-                    <field name="state" widget="statusbar" statusbar_visible="new,done"/>
                 </header>
                 <sheet>
                     <div>
@@ -45,6 +32,7 @@
                         <group name="Left main">
                             <field name="date"/>
                             <field name="due_date"/>
+                            <field name="assigned_qty"/>
                         </group>
                         <group name="Right group">
                             <field name="assigned"/>
@@ -55,10 +43,19 @@
                     <notebook>
                         <page string="Main">
                             <group string="Description">
-                                <field name="description" nolabel="1"/>
+                                <field name="description" nolabel="1" colspan='2'/>
+                                <field name="tag_ids"  nolabel="1" colspan='2'/>
+                                <field name="related_tag_ids"  nolabel="1" colspan='2'/>
+                                <field name="new_tag_name"/>
+                                <button string="New tag"
+                                        name="create_new_tag"
+                                        type="object"/>
                             </group>
                         </page>
                         <page string="Quality">
+                            <group string="Actions">
+                                <field name="action_ids" nolabel="1"/>
+                            </group>
                             <group string="Corrective Action">
                                 <field name="corrective_action" nolabel="1"/>
                             </group>

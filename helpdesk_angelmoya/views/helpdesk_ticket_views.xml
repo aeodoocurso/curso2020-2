@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+
   <record id="view_helpdesk_ticket_tree" model="ir.ui.view">
     <field name="name">view.helpdesk_ticket.tree</field>
     <field name="model">helpdesk.ticket</field>
@@ -177,6 +178,7 @@
     <field name="name">Tickets</field>
     <field name="res_model">helpdesk.ticket</field>
     <field name="view_mode">kanban,tree,pivot,graph,calendar,form</field>
+
     <field name="help" type="html">
       <p class="oe_view_nocontent_create">
         Click to create a new Tickets.
@@ -185,6 +187,8 @@
   </record>
 
   <menuitem id="helpdest_root_menu" name="Helpdesk" sequence="10"/>
+
+  <menuitem id="helpdest_ticket_main_menu" name="Helpdesk" parent="helpdest_root_menu"  sequence="10"/>
 
   <menuitem id="helpdest_ticket_main_menu" name="Helpdesk" parent="helpdest_root_menu" sequence="10"/>
 
