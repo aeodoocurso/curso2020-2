@@ -109,7 +109,7 @@
     </record>
 
     <!-- form.helpdesk.ticket form view -->
-    <record id="view_helpdesk_tichet_form" model="ir.ui.view">
+    <record id="view_helpdesk_ticket_form" model="ir.ui.view">
         <field name="name">view.helpdesk_ticket.form</field>
         <field name="model">helpdesk.ticket</field>
         <field name="arch" type="xml">
@@ -121,8 +121,6 @@
                     <button string="Done" name="set_done" type="object" states="waiting,progress,assigned,new" />
                     <button string="Cancel" name="set_cancel" type="object" states="new,assigned,progress,waiting,done" />
                     <field name="state" widget="statusbar" statusbar_visible="new,done" />
-                    <!-- states="assigned,progress" -->
-                    <!-- class="oe_highlight" -->
                 </header>
                 <sheet>
                     <div>

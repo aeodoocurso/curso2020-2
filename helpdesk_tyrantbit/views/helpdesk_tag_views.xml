@@ -19,7 +19,12 @@
                 <sheet>
                     <group name="main">
                         <field name="name"/>
+                        <field name="ticket"/>
+                        <field name="action"/>
                         <field name="ticket_ids" widget="many2many_tags"/>
+                        <button string="Create ticket" 
+                            name="%(helpdesk_tyrantbit.view_new_ticket_from_tag_action)d" 
+                            type="action" />
                     </group>
                 </sheet>
             </form>
@@ -73,6 +78,13 @@
             <p class="oe_view_nocontent_create">
             Click to create a new tags</p>
         </field>
+    </record>
+
+    <record id="helpdesk_tag_new_action" model="ir.actions.act_window">
+        <field name="name">Tag</field>
+        <field name="res_model">helpdesk.tag</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
     </record>
 
     <menuitem id="helpdesk_tag_menu" name="tags" parent="helpdesk_ticket_main_menu" action="helpdesk_tag_action" sequence="10" />
