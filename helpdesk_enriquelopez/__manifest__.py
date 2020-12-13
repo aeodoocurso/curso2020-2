@@ -23,6 +23,7 @@ Módulo de prueba de Helpdesk curso Aeodoo
     "data": [
     'security/helpdesk_security.xml',
     'security/ir.model.access.csv',
+    'wizards/new_ticket_from_tag_views.xml',
     'views/helpdesk_ticket_views.xml',
     'views/helpdesk_tag_views.xml',
     'views/helpdesk_action_views.xml',
