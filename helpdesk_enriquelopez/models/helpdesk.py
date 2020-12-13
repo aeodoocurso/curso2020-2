@@ -1,5 +1,6 @@
-from odoo import api, fields, models
-
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError, UserError
+from datetime import timedelta
 
 class HelpdeskTicketState(models.Model):
     _name = "helpdesk.ticket.state"
@@ -21,6 +22,11 @@ class HelpdeskTag(models.Model):
         column2="ticket_id",
         string="Tickets")
 
+    @api.model
+    def _clean_tags_all(self):
+        tags_to_delete = self.search([('ticket_ids', '=', False)])
+        tags_to_delete.unlink()
+
 class HelpdeskTicketAction(models.Model):
     _name = "helpdesk.ticket.action"
     _description = "Helpdesk Action"
@@ -33,6 +39,9 @@ class HelpdeskTicketAction(models.Model):
 class HelpdeskTicket(models.Model):
     _name = "helpdesk.ticket"
     _description = "Helpdesk Ticket"
+
+    def _default_user_id(self):
+        return self.env.user
 
     name = fields.Char(
         string='Name',
@@ -70,7 +79,8 @@ class HelpdeskTicket(models.Model):
 
     user_id = fields.Many2one(
         comodel_name='res.users',
-        string='Assigned to')
+        string='Assigned to',
+        default=_default_user_id)
 
     date_due = fields.Date(
         string='Date Due')
@@ -102,7 +112,7 @@ class HelpdeskTicket(models.Model):
     new_tag_name = fields.Char(
         string="New Tag")
 
-    def create_new_tag(self):
+    def create_new_tag_back(self):
         self.ensure_one()
         tag = self.env['helpdesk.tag'].create({
             'name': self.new_tag_name
@@ -113,6 +123,16 @@ class HelpdeskTicket(models.Model):
         # })
         import wdb; wdb.set_trace()
         self.tag_ids = self.tag_ids + tag
+
+    def create_new_tag(self):
+        self.ensure_one()
+        action = self.env.ref(
+            'helpdesk_enriquelopez.helpdesk_tag_new_action').read()[0]
+        action['context'] = {
+            'default_name': self.new_tag_name,
+            'default_ticket_ids': [(6, 0, self.ids)]
+        }
+        return action
 
     # def set_assigned_multi(self):
     #     for ticket in self:
@@ -168,3 +188,19 @@ class HelpdeskTicket(models.Model):
             self.update({
             'related_tag_is': [(6,0,all_tag.ids)]
             })
+
+    @api.constrains('dedicated_time')
+    def _check_dedicated_time(self):
+        for ticket in self:
+            if ticket.dedicated_time and ticket.dedicated_time < 0:
+                raise ValidationError(_("Time must be positive."))
+
+    @api.onchange('date')
+    def _onchange_date(self):
+        if not self.date:
+            self.date_due = False
+        else:
+            if self.date < fields.Date.today():
+                raise UserError(_("Date must be today or future."))
+            date_datetime = fields.Date.from_string(self.date)
+            self.date_due = date_datetime + timedelta(1)
