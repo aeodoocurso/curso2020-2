@@ -33,6 +33,8 @@ class HelpdeskTicketAction(models.Model):
 
     name = fields.Char()
     date = fields.Date()
+    dedicated_time = fields.Float(
+        string='Time')
     ticket_id = fields.Many2one(
         comodel_name="helpdesk.ticket")
 
@@ -66,7 +68,10 @@ class HelpdeskTicket(models.Model):
     #     default='new')
 
     dedicated_time = fields.Float(
-        string='Time')
+        string='Time',
+        compute='_compute_dedicated_time',
+        inverse='_set_dedicated_time',
+        search='_search_dedicated_time')
 
     assigned = fields.Boolean(
         string='Assigned',
@@ -111,6 +116,31 @@ class HelpdeskTicket(models.Model):
 
     new_tag_name = fields.Char(
         string="New Tag")
+
+    def _search_dedicated_time(self, operator, value):
+        # action_ids = self.env['helpdesk.ticket.action'].search([('dedicated_time', operator, value)])
+
+        query_str = """select ticket_id from helpdesk_ticket_action group by ticket_id having sum(dedicated_time) %s %s""" % (operator, value)
+        self._cr.execute(query_str)
+        res = self._cr.fetchall()
+        return [('id', 'in', [r[0] for r in res])]
+
+    def _set_dedicated_time(self):
+        for record in self:
+            computed_time = sum(self.action_ids.mapped('dedicated_time'))
+            if self.dedicated_time != computed_time:
+                values = {
+                    'name': 'Auto time',
+                    'date': fields.Date.today(),
+                    'ticket_id': record.id,
+                    'dedicated_time': self.dedicated_time - computed_time
+                }
+                self.update({'action_ids': [(0, 0, values)]})
+
+    @api.depends('action_ids.dedicated_time')
+    def _compute_dedicated_time(self):
+        for record in self:
+            record.dedicated_time = record.action_ids and sum(record.action_ids.mapped('dedicated_time')) or 0
 
     def create_new_tag_back(self):
         self.ensure_one()
