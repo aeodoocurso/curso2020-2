@@ -27,14 +27,14 @@ class NewTicketFromTag(models.TransientModel):
         ticket = self.env['helpdesk.ticket'].create(values)
 
         action = self.env.ref(
-            'helpdesk_angelmoya.helpdest_ticket_action').read()[0]
+            'helpdesk_angelivorra.helpdest_ticket_action').read()[0]
 
         action['context'] = {
             'default_tag_ids': [(6, 0, self.tag_id.ids)],
         }
         # action['domain'] = [('tag_ids', '=', self.id)]
         action['views'] = [
-            (self.env.ref('helpdesk_angelmoya.view_helpdesk_ticket_form').id,
+            (self.env.ref('helpdesk_angelivorra.view_helpdesk_ticket_form').id,
              'form')
         ]
         action['res_id'] = ticket.id

@@ -153,7 +153,7 @@ class HelpdeskTicket(models.Model):
         default_name = self.new_tag_name
         self.new_tag_name = False
         action = self.env.ref(
-            'helpdesk_angelmoya.helpdesk_tag_new_action').read()[0]
+            'helpdesk_angelivorra.helpdesk_tag_new_action').read()[0]
         action['context'] = {
             'default_name': default_name,
             'default_ticket_ids': [(6, 0, self.ids)]

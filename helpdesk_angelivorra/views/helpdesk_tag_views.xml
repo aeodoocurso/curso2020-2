@@ -13,7 +13,7 @@
                           <field name="action" />
                           <field name="ticket_ids" widget="many2many_tags"/>
                           <button string="Create Ticket"
-                              name="%(helpdesk_angelmoya.new_ticket_from_tag_action)d"
+                              name="%(helpdesk_angelivorra.new_ticket_from_tag_action)d"
                               type="action"/>
                       </group>
                   </sheet>
