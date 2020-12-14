@@ -20,6 +20,7 @@ Helpdesk module that enables the feature of creating support tickets.
 	"data" : [
 		'security/helpdesk_security.xml',
 		'security/ir.model.access.csv',
+		'wizards/new_ticket_from_tag_views.xml',
 		'views/helpdesk_ticket_views.xml',
 		'views/helpdesk_tag_views.xml',
 		'views/helpdesk_action_views.xml',

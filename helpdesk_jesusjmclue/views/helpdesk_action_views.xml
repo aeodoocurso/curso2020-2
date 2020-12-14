@@ -7,6 +7,7 @@
             <tree string="Actions">
                 <field name="name"/>
                 <field name="date"/>
+                <field name="dedicated_time"/>
                 <field name="ticket_id"/>
             </tree>
         </field>
@@ -21,6 +22,7 @@
                     <group name="main">
                     	<field name="name"/>
                     	<field name="date"/>
+                        <field name="dedicated_time"/>
                     	<field name="ticket_id"/>
                     </group>
                 </sheet>
