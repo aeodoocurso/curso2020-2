@@ -8,5 +8,6 @@ class HelpdeskTicketAction(models.Model):
     name = fields.Char()
     date = fields.Date()
     ticket_id = fields.Many2one(
-        'helpdesk.ticket'
-    )
+        'helpdesk.ticket')
+    dedicated_time = fields.Float(
+        string="Time")

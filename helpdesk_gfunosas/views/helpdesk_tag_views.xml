@@ -10,6 +10,9 @@
                         <group name="main">
                             <field name="name" />
                             <field name="ticket_ids" widget="many2many_tags"/>
+                            <button string="Create Ticket"
+                              name="%(helpdesk_gfunosas.new_ticket_from_tag_action)d"
+                              type="action"/>
                         </group>
                     </sheet>
                 </form>
