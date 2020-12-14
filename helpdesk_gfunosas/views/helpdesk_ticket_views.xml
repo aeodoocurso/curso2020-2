@@ -57,7 +57,14 @@
                         </page>
                         <page string="Actions">
                             <group string="Actions">
-                                <field name="action_ids" nolabel="1"/>
+                                <field name='action_ids' nolabel="1"
+                                       context="{'default_date': date}">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="date"/>
+                                        <field name="dedicated_time"/>
+                                    </tree>
+                                </field>
                             </group>
                             <group string="Corrective Action">
                                 <field name="corrective_action" nolabel="1"/>

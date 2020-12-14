@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class HelpdeskTag(models.Model):
@@ -13,3 +13,8 @@ class HelpdeskTag(models.Model):
         column1 ='tag_id',
         column2 ='ticket_id',
     )
+
+    @api.model
+    def _clean_tags_all(self):
+        tags_to_delete = self.search([('ticket_ids', '=', False)])
+        tags_to_delete.unlink()
