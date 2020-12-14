@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_helpdesk_tag_tree" model="ir.ui.view">
+        <field name="name">view.helpdesk_tag.tree</field>
+        <field name="model">helpdesk.tag</field>
+        <field name="arch" type="xml">  
+            <tree string="tags">
+                <field name="name" />
+                <field name="ticket_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_helpdesk_tag_form" model="ir.ui.view">
+        <field name="name">view.helpdesk_tag.form</field>
+        <field name="model">helpdesk.tag</field>
+        <field name="arch" type="xml">
+            <form string="Tag">
+                <sheet>
+                    <group name="main">
+                        <field name="name"/>
+                        <field name="ticket_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_helpdesk_tag_simple_tree" model="ir.ui.view">
+        <field name="name">view.helpdesk_tag.simple.tree</field>
+        <field name="model">helpdesk.tag</field>
+        <field eval="20" name="priority"/>
+        <field name="arch" type="xml">  
+            <tree string="tags">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_helpdesk_tag_simple_form" model="ir.ui.view">
+        <field name="name">view.helpdesk_tag.simple.form</field>
+        <field name="model">helpdesk.tag</field>
+        <field eval="20" name="priority"/>
+        <field name="arch" type="xml"> 
+            <form string="Tag">
+                <sheet>
+                    <group name="main">
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_helpdesk_tag_search" model="ir.ui.view">
+        <field name="name">view.helpdesk_tag.search</field>
+        <field name="model">helpdesk.tag</field>
+        <field name="arch" type="xml">
+            <search string="Tag">
+                <field name="name"/>
+                <group string="Group by" name="groupby">
+                    <filter name="name_groupy" string="name" context="{'group_by': 'name'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="helpdesk_tag_action" model="ir.actions.act_window">
+        <field name="name">tags</field>
+        <field name="res_model">helpdesk.tag</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Click to create a new tags</p>
+        </field>
+    </record>
+
+    <menuitem id="helpdesk_tag_menu" name="tags" parent="helpdesk_ticket_main_menu" action="helpdesk_tag_action" sequence="10" />
+
+</odoo>
