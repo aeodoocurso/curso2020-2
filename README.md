@@ -9,7 +9,7 @@ Revisar también si el nombre y apellidos son correctos.
 | Luis Miguel | Arpón | LuisMiguel_Hergar#9485 | luismiguelarpon | SI | SI |
 | Manuel | Barbadillo | | | | |
 | Juan Manuel | Beltrán Osa | Juanma_Tyrantbit | Tyrantbit | SI | SI |
-| Daniel | Casado Villanueva | | | | |
+| Daniel | Casado Villanueva | Daniel Casado#4336 | danibit | SI | SI |
 | Ramón | Castro Casariego |Ramón|RCasariego|Si|Si|
 | Rafael | Doña Martínez | rafadm98#0934 | rafadm98 | SI | SI |
 | Gerard | Funosas i Planas | gerard_gfunosas#7596 | gfunosas | SI | SI |
