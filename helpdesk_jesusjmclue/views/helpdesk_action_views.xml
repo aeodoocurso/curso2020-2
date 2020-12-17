@@ -28,7 +28,7 @@
         </field>
     </record>
 
-    <record id="view_helpdesk_ticket_search" model="ir.ui.view">
+    <record id="view_helpdesk_ticket_action_search" model="ir.ui.view">
         <field name="name">view.helpdesk_ticket_action.search</field>
         <field name="model">helpdesk.ticket.action</field>
         <field name="arch" type="xml">

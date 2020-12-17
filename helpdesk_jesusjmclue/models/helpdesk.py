@@ -1,12 +1,5 @@
 from odoo import api, fields, models
 
-class HelpdeskTicketState(models.Model):
-	_name = 'helpdesk.ticket.state'
-	_description = "Helpdesk Ticket State"
-
-	name = fields.Char()
-
-
 class HelpdeskTicketTag(models.Model):
 	_name = 'helpdesk.ticket.tag'
 	_description = "Helpdesk Ticket Tag"
@@ -44,9 +37,15 @@ class HelpdeskTicket(models.Model):
 	date = fields.Date(
 		string = 'Date')
 
-	state_id = fields.Many2one(
-		comodel_name = 'helpdesk.ticket.state',
-		string = 'State')
+	state = fields.Selection(
+		[('new', 'New'),
+		 ('assigned', 'Assigned'),
+		 ('progress', 'In Progress'),
+		 ('waiting', 'Waiting'),
+		 ('done', 'Done'),
+		 ('cancelled', 'Cancelled')],
+		string = 'State',
+		default = 'new')
 
 	dedicated_time = fields.Float(
 		string = 'Time')
