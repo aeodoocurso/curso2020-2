@@ -3,11 +3,11 @@ from odoo.exceptions import ValidationError, UserError
 from datetime import datetime, timedelta
 
 
-class HelpdeskTicketState(models.Model):
-    _name = 'helpdesk.ticket.state'
-    _description = "Helpdesk State"
+# class HelpdeskTicketState(models.Model):
+#     _name = 'helpdesk.ticket.state'
+#     _description = "Helpdesk State"
 
-    name = fields.Char()
+#     name = fields.Char()
 
 
 class HelpdeskTag(models.Model):
@@ -25,6 +25,8 @@ class HelpdeskTag(models.Model):
         column2='ticket_id',
         string='Tickets'
     )
+
+    
 
     @api.model
     def _clean_tags_all(self):
@@ -49,6 +51,9 @@ class HelpdeskTicket(models.Model):
     _name = 'helpdesk.ticket'
     _description = "Helpdesk Ticket"
 
+    _inherit= ['mail.thread.cc',
+    'mail.activity.mixin']
+
     def _default_user_id(self):
         return self.env.user
 
@@ -59,17 +64,19 @@ class HelpdeskTicket(models.Model):
     description = fields.Text(
         string='Description')
     date = fields.Date(
-        string='Date')
+        string='Date',
+        tracking = True)
     # Estado [Nuevo, Asignado, En proceso, Pendiente, Resuelto, Cancelado], que por defecto sea Nuevo
-    # state = fields.Selection(
-    #     [('new', 'New'),
-    #      ('assigned', 'Assigned'),
-    #      ('progress', 'Progress'),
-    #      ('waiting', 'Waiting'),
-    #      ('done', 'Done'),
-    #      ('cancel', 'Cancel')],
-    #     string='State',
-    #     default='new')
+
+    state = fields.Selection(
+        [('new', 'New'),
+         ('assigned', 'Assigned'),
+         ('progress', 'Progress'),
+         ('waiting', 'Waiting'),
+         ('done', 'Done'),
+         ('cancel', 'Cancel')],
+        string='State',
+        default='new')
 
     # Tiempo dedicado (en horas)
     dedicated_time = fields.Float(
@@ -104,6 +111,10 @@ class HelpdeskTicket(models.Model):
         comodel_name='res.users',
         string='Assigned to',
         default=_default_user_id)
+
+    partner_id = fields.Many2one(
+        comodel_name='res.partner',
+        string='Customer')
 
     # Asignar, cambia estado a asignado y pone a true el campo asignado, visible solo con estado = nuevo
     def set_assigned(self):
@@ -154,10 +165,10 @@ class HelpdeskTicket(models.Model):
     )
 
     # State M2O
-    state_id = fields.Many2one(
-        comodel_name='helpdesk.ticket.state',
-        string='State'
-    )
+    # state_id = fields.Many2one(
+    #     comodel_name='helpdesk.ticket.state',
+    #     string='State'
+    # )
 
     # Action O2M
     action_ids = fields.One2many(

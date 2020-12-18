@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- Report de un ticket. Mostrar nombre, fecha, cliente y listado de acciones -->
+    <template id="report_ticket">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Ticket: <span t-field="o.name"/>
+                        </h2>
+                        <div class="row mt32 mb32" id="informations">
+                            <div class="col-auto mw-100 mb-2">
+                                <strong>State:</strong>
+                                <p class="m-0" t-field="o.state"/>
+                            </div>
+                            <div t-if="o.date" class="col-auto mw-100 mb-2">
+                                <strong>Ticket Date:</strong>
+                                <p class="m-0" t-field="o.date" t-options='{"widget":"date"}'/>
+                            </div>
+                            <div t-if="o.user_id" class="col-auto mw-100 mb-2">
+                                <strong>Asigned to:</strong>
+                                <p class="m-0" t-field="o.user_id"/>
+                            </div>
+                            <div t-if="o.user_id" class="col-auto mw-100 mb-2">
+                                <strong>Partner:</strong>
+                                <div t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True}'/>
+                            </div>
+                        </div>
+                        <table class="table table-sm o_main_table">
+                            <thead>
+                                <tr>
+                                    <th name="th_description" class="text-left">Description</th>
+                                    <th name="th_date" class="text-right">Date</th>
+                                    <th name="th_time" class="text-right">Time</th>
+
+                                </tr>
+                            </thead>
+                            <tbody >
+
+                                <t t-foreach="o.action_ids" t-as="action">
+                                    <tr>
+                                        <td name="td_description" class="text-right">
+                                            <span t-field="action.name"/>
+                                        </td>
+                                        <td name="td_date" class="text-right">
+                                            <span t-field="action.date"/>
+                                        </td>
+                                        <td name="td_time" class="text-right">
+                                            <span t-field="action.dedicated_time"/>
+                                        </td>
+
+                                    </tr>
+                                </t>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    
+    <report id="action_report_ticket" string="Ticket" model="helpdesk.ticket" report_type="qweb-pdf" name="helpdesk_salvamad.report_ticket" file="helpdesk_salvamad.report_ticket" />
+<!-- Tarjeta identificativa para partner con foto. -->
+
+    <record id="paperformat_card" model="report.paperformat">
+        <field name="name">Card</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">80</field>
+        <field name="page_width">175</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">3</field>
+        <field name="margin_bottom">3</field>
+        <field name="margin_left">3</field>
+        <field name="margin_right">3</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">3</field>
+        <field name="dpi">80</field>
+    </record>
+
+    <template id="report_partner">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <div class="row">
+                        <div class="col-4">
+                            <img t-if="o.image_512" t-att-src="image_data_uri(o.image_512)" alt="Photo" />
+                        </div>
+                        <div class="col-7 offset-1" name="company_address">
+                            <ul class="list-unstyled">
+                                <strong>
+                                    <li t-if="o.name">
+                                        <span t-field="o.name"/>
+                                    </li>
+                                </strong>
+                                <li t-if="o.phone">Tel: <span class="o_force_ltr" t-field="o.phone"/>
+                                </li>
+                                <li t-if="o.email">
+                                    <span t-field="o.email"/>
+                                </li>
+                                <li t-if="o.website">
+                                    <span t-field="o.website"/>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <report id="action_report_partner" string="Card" model="res.partner" report_type="qweb-pdf" name="helpdesk_salvamad.report_partner" paperformat="helpdesk_salvamad.paperformat_card" />
+
+</odoo>

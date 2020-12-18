@@ -2,8 +2,8 @@
 # Salva Madrid S - smadrid@ticomsa.com
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
-    "name": "Helpdesk Salva Madrid",
-    "summary": "Helpdesk y tickets",
+    "name": "Sale Helpdesk Salva Madrid",
+    "summary": "Helpdesk Sale",
 	    'description': """
 Helpdesk
 ======
@@ -19,28 +19,10 @@ You could use this simplified accounting in case you work with an (external) acc
     "license": "AGPL-3",
     "application": True,
     "installable": True,
-    "depends": [
-        "base",
-        "mail"
-    ],
-    # this feature is only present for 11.0+
-    "excludes": [
-        "module_name",
-    ],
-    "data": [
-	        'security/helpdesk_security.xml',
-        'security/ir.model.access.csv',
-        'wizards/new_ticket_from_tag_views.xml',
-		'views/helpdesk_ticket_views.xml',
-        'views/helpdesk_tag_views.xml',
-        'views/helpdesk_action_view.xml',
-        'data/helpdesk_data.xml',
-        'data/helpdesk_demo.xml',
-        'reports/helpdesk_ticket_templates.xml'
-        
-
-    ],
-    "demo": [
-        'data/helpdesk_demo.xml'
-    ]
+    "depends": ["sale_management","helpdesk_salvamad"],
+    "data": [ "views/sale_views.xml",
+    "views/product_views.xml",
+    "views/helpdesk_ticket_views.xml",
+    "reports/sale_report_templates.xml"],
+    "demo": []
 }
