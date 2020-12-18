@@ -8,7 +8,7 @@
       <tree string="Tickets">
         <field name="name"/>
         <field name="date"/>
-        <field name="state_id"/>
+        <field name="state"/>
       </tree>
     </field>
   </record>
@@ -24,7 +24,7 @@
           <button string="Waiting" name="set_waiting" type="object" />
           <button string="Done" name="set_done" type="object" />
           <button string="Cancel" name="set_cancel" type="object" /> -->
-          <field name="state_id" widget="statusbar"/>
+          <field name="state" widget="statusbar"/>
         </header>
         <sheet>
           <div>

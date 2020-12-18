@@ -2,12 +2,6 @@ from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError, UserError
 from datetime import timedelta
 
-class HelpdeskTicketState(models.Model):
-    _name = "helpdesk.ticket.state"
-    _description = "Helpdesk State"
-
-    name = fields.Char()
-
 class HelpdeskTag(models.Model):
     _name = "helpdesk.tag"
     _description = "Helpdesk Tag"
@@ -53,19 +47,15 @@ class HelpdeskTicket(models.Model):
     date = fields.Date(
         string='Date')
 
-    state_id = fields.Many2one(
-        comodel_name="helpdesk.ticket.state",
-        string="State")
-
-    # state = fields.Selection(
-    #     [('new', 'New'),
-    #      ('assigned', 'Assigned'),
-    #      ('progress', 'Progress'),
-    #      ('waiting', 'Waiting'),
-    #      ('done', 'Done'),
-    #      ('cancel', 'Cancel')],
-    #     string='State',
-    #     default='new')
+    state = fields.Selection(
+        [('new', 'New'),
+         ('assigned', 'Assigned'),
+         ('progress', 'Progress'),
+         ('waiting', 'Waiting'),
+         ('done', 'Done'),
+         ('cancel', 'Cancel')],
+        string='State',
+        default='new')
 
     dedicated_time = fields.Float(
         string='Time',
