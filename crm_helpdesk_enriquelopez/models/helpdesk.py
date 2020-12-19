@@ -5,7 +5,7 @@ class CrmLeadTicket(models.Model):
     _description = "Helpdesk Ticket"
     _inherits = {'crm.lead': 'lead_id'}
 
-    lead_id = fields.Many2many(
+    lead_id = fields.Many2one(
         comodel_name="crm.lead",
         string="Lead")
 

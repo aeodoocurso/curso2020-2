@@ -2,7 +2,7 @@
 <odoo>
 
   <record id="view_crm_lead_ticket_form" model="ir.ui.view">
-    <field name="name">view.view_crm_lead_ticket.form</field>
+    <field name="name">view.crm_lead_ticket.form</field>
     <field name="model">crm.lead.ticket</field>
     <field name="inherit_id" ref="crm.crm_lead_view_form"/>
     <field name="arch" type="xml">
@@ -16,8 +16,8 @@
     </field>
   </record>
 
-  <record id="crm_lead_ticket_tree_view_leads" model="ir.ui.view">
-    <field name="name">crm.lead.ticket.tree.lead</field>
+  <record id="view_crm_lead_ticket_tree" model="ir.ui.view">
+    <field name="name">view.crm_lead_ticket.tree</field>
     <field name="model">crm.lead.ticket</field>
     <field name="arch" type="xml">
         <tree string="Leads" decoration-bf="message_needaction==True" decoration-muted="probability == 100">
@@ -50,7 +50,7 @@
 
   <record id="helpdesk_ticket_action" model="ir.actions.act_window">
     <field name="name">Tickets</field>
-    <field name="res_model">helpdesk.ticket</field>
+    <field name="res_model">crm.lead.ticket</field>
     <field name="view_ids" eval="[(5, 0, 0),
                                   (0, 0, {'view_mode': 'tree'}),
                                   (0, 0, {'view_mode': 'form', 'view_id': ref('view_crm_lead_ticket_form')})]"/>
