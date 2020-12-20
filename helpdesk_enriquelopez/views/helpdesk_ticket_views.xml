@@ -37,7 +37,6 @@
             <group name="left">
               <field name="date"/>
               <field name="date_due"/>
-              <field name="partner_id" context="{'default_company_type': 'person', 'default_user_id': user_id, 'default_search_type_person': True}"/>
             </group>
             <group name="right">
               <field name="user_id" options="{'no_create': True, 'no_open': True}"/>
@@ -81,11 +80,6 @@
             </page>
           </notebook>
         </sheet>
-        <div class="oe_chatter">
-            <field name="message_follower_ids" widget="mail_followers"/>
-            <field name="activity_ids" widget="mail_activity"/>
-            <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
-        </div>
       </form>
     </field>
   </record>

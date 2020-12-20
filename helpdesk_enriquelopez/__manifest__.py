@@ -19,7 +19,6 @@ Módulo de prueba de Helpdesk curso Aeodoo
     "installable": True,
     "depends": [
         "base",
-        "mail"
     ],
     "data": [
     'security/helpdesk_security.xml',

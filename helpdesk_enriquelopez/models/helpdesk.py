@@ -35,10 +35,6 @@ class HelpdeskTicketAction(models.Model):
 class HelpdeskTicket(models.Model):
     _name = "helpdesk.ticket"
     _description = "Helpdesk Ticket"
-    _inherit = [
-        "mail.thread",
-        "mail.activity.mixin",
-    ]
 
     def _default_user_id(self):
         return self.env.user
@@ -49,7 +45,7 @@ class HelpdeskTicket(models.Model):
     description = fields.Text(
         string='Description')
     date = fields.Date(
-        string='Date', tracking=True)
+        string='Date')
 
     state = fields.Selection(
         [('new', 'New'),
@@ -80,10 +76,6 @@ class HelpdeskTicket(models.Model):
         comodel_name='res.users',
         string='Assigned to',
         default=_default_user_id)
-
-    partner_id = fields.Many2one(
-        comodel_name='res.partner',
-        string='Customer')
 
     date_due = fields.Date(
         string='Date Due')
