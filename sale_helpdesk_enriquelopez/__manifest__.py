@@ -24,6 +24,7 @@ Módulo de prueba de Sale Helpdesk curso Aeodoo
         "views/sale_views.xml",
         "views/product_views.xml",
         "views/helpdesk_ticket_views.xml",
+        "reports/sale_report_template.xml",
     ],
     "demo": [],
 }

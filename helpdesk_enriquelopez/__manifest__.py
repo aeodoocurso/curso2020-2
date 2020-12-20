@@ -29,6 +29,7 @@ Módulo de prueba de Helpdesk curso Aeodoo
     'views/helpdesk_ticket_views.xml',
     'views/helpdesk_tag_views.xml',
     'views/helpdesk_action_views.xml',
+    'reports/helpdesk_ticket_templates.xml',
     ],
     "demo": [
     'data/helpdesk_demo.xml',
