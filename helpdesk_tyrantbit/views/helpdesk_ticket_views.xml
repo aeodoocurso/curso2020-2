@@ -133,6 +133,7 @@
                         <group name="left">
                             <field name="date" />
                             <field name="date_due" />
+                            <field name="partner_id" context="{'default_company_type': 'person', 'default_user_id': user_id}" />
                         </group>
                         <group name="right">
                             <field name="user_id" />
@@ -145,8 +146,8 @@
                         <page string="Main" name="Main">
                             <group string="Description" nolabel="1">
                                 <field name="description" nolabel="1" cols="2" />
-                                <field name="tag_ids" nolabel="1" colspan="2" options="{'no_create': True}"/>
-                                <field name="related_tag_ids" nolabel="1" colspan="2" context="{'tree_view_ref':'helpdesk_tyrantbit.view_helpdesk_tag_simple_tree', 'form_view_ref':'helpdesk_tyrantbit.view_helpdesk_tag_simple_form'}"/>
+                                <field name="tag_ids" nolabel="1" colspan="2" options="{'no_create': True}" />
+                                <field name="related_tag_ids" nolabel="1" colspan="2" context="{'tree_view_ref':'helpdesk_tyrantbit.view_helpdesk_tag_simple_tree', 'form_view_ref':'helpdesk_tyrantbit.view_helpdesk_tag_simple_form'}" />
                                 <field name="new_tag_name" />
                                 <button string="New tag" name="create_new_tag" type="object" />
                             </group>
@@ -155,8 +156,9 @@
                             <group string="Actions">
                                 <field name="action_id" nolabel="1" context="{'default_date':date}">
                                     <tree editable="bottom">
-                                        <field name="name"/>
-                                        <field name="date"/>
+                                        <field name="name" />
+                                        <field name="date" />
+                                        <field name="dedicated_time" widget="float_time" />
                                     </tree>
                                     <!-- <form> if tree editable, this sections isn't needed
                                         <group>
@@ -175,6 +177,11 @@
                         </page>
                     </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                </div>
             </form>
         </field>
     </record>

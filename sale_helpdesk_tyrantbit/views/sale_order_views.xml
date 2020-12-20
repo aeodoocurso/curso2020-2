@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- sale.order inherit form view -->
+    <record id="view_sale_order_helpdesk_form" model="ir.ui.view">
+        <field name="name">view.sale_order_ helpdesk.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <page name="order_lines" position="after">
+                <page string="Helpdesk" name="helpdesk">
+                    <group>
+                        <field name="ticket_ids" nolabel="1"/>
+                    </group> 
+                </page>
+            </page>
+        </field>
+    </record>
+
+
+</odoo>
