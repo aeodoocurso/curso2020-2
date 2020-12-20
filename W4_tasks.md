@@ -14,4 +14,12 @@
 ## 09/12/2020
 
 26 Campos Avanzados 
+37 Wizards
+
+- Crear un asistente para crear tickets desde la etiqueta
+  - que coja por contexto el active_id para que el ticket creado tenga asociada la etiqueta desde la que se lanza el asistente
+  - crear el boton en el formulario de la etiqueta
+  - después de crear el ticket redirigir al formulario con el ticket creado
+- Hacer que el campo tiempo dedicado sea calculado, en base al tiempo dedicado en cada acción, y hacer el inverse para que cree una acción cuando se escrive el tiempo dedicado.
+- Modificar el search del campo computed.
 

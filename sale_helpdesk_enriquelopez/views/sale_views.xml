@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_sale_order_helpdesk_form" model="ir.ui.view">
+    <field name="name">view.sale_order_helpdesk.form</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//notebook/page[@name='order_lines']" position="after">
+        <page string="Helpdesk" name="helpdesk">
+          <field name="ticket_ids" nolabel="1"/>
+        </page>
+      </xpath>
+      <!-- <xpath expr="//notebook" position="inside">
+        <page string="Helpdesk" name="helpdesk">
+          <field name="ticket_ids" nolabel="1"/>
+        </page>
+      </xpath>
+      <page name="order_lines" position="after">
+        <page string="Helpdesk" name="helpdesk">
+          <field name="ticket_ids" nolabel="1"/>
+        </page>
+      </page> -->
+    </field>
+  </record>
+</odoo>
