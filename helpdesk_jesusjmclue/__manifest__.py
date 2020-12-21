@@ -16,7 +16,7 @@ Helpdesk module that enables the feature of creating support tickets.
     "license": "AGPL-3",
     "application": True,
     "installable": True,
-	"depends" : [ "base"],
+	"depends" : [ "base", "mail"],
 	"data" : [
 		'security/helpdesk_security.xml',
 		'security/ir.model.access.csv',
@@ -25,5 +25,6 @@ Helpdesk module that enables the feature of creating support tickets.
 		'views/helpdesk_action_views.xml',
 	],
 	"demo" : [
+		'data/helpdesk_demo.xml',
 	]
 }
