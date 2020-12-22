@@ -5,5 +5,5 @@ helpdesk_ticket_state_user,Helpdesk ticket State user,helpdesk_pmm2207.model_hel
 helpdesk_ticket_state_manager,Helpdesk ticket State manager,helpdesk_pmm2207.model_helpdesk_ticket_state,helpdesk_pmm2207.res_groups_helpdesk_manager,1,1,1,1
 helpdesk_ticket_action_user,Helpdesk ticket Action user,helpdesk_pmm2207.model_helpdesk_ticket_action,helpdesk_pmm2207.res_groups_helpdesk_user,1,0,0,0
 helpdesk_ticket_action_manager,Helpdesk ticket Action manager,helpdesk_pmm2207.model_helpdesk_ticket_action,helpdesk_pmm2207.res_groups_helpdesk_manager,1,1,1,1
-helpdesk_tag_user,Helpdesk tag user,helpdesk_pmm2207.model_helpdesk_tag,helpdesk_pmm2207.res_groups_helpdesk_user,1,0,0,0
-helpdesk_tag_manager,Helpdesk tag manager,helpdesk_pmm2207.model_helpdesk_tag,helpdesk_pmm2207.res_groups_helpdesk_manager,1,1,1,1
+helpdesk_tag_user,Helpdesk tag User,helpdesk_pmm2207.model_helpdesk_tag,helpdesk_pmm2207.res_groups_helpdesk_user,1,0,0,0
+helpdesk_tag_manager,Helpdesk tag Manager,helpdesk_pmm2207.model_helpdesk_tag,helpdesk_pmm2207.res_groups_helpdesk_manager,1,1,1,1

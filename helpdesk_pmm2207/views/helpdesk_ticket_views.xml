@@ -62,6 +62,7 @@
                               <tree editable="bottom">
                                   <field name="name"/>
                                   <field name="date"/>
+                                  <field name="dedicated_time"/>
                               </tree>
                               <form>
                                   <group name="action">

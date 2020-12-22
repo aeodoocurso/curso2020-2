@@ -9,7 +9,10 @@
                     <sheet>
                         <group name="main">
                             <field name="name"/>
+                            <field name="ticket"/>
+                            <field name="action"/>
                             <field name="ticket_ids" widget="many2many_tags"/>
+                            <button name="%(helpdesk_pmm2207.new_ticket_from_tag_action)d" type="action" string="Create Ticket"/>
                         </group>
                     </sheet>
                 </form>
@@ -30,6 +33,7 @@
         <record id="view_helpdesk_tag_simple_form" model="ir.ui.view">
             <field name="name">view.helpdesk_tag_simple.form</field>
             <field name="model">helpdesk.tag</field>
+            <field eval="20" name="priority"/>
             <field name="arch" type="xml">
                 <form string="Tag">
                     <sheet>
@@ -44,6 +48,7 @@
         <record id="view_helpdesk_tag_simple_tree" model="ir.ui.view">
             <field name="name">view.helpdesk_tag_simple.tree</field>
             <field name="model">helpdesk.tag</field>
+            <field eval="20" name="priority"/>
             <field name="arch" type="xml">
                 <tree string="Tag">
                     <field name="name"/>
@@ -75,6 +80,15 @@
               </p>
             </field>
         </record>
+
+
+        <record id="helpdesk_tag_new_action" model="ir.actions.act_window">
+            <field name="name">Tag</field>
+            <field name="res_model">helpdesk.tag</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
         <menuitem id="helpdesk_tag_menu" parent="helpdesk_ticket_main_menu" action="helpdesk_tag_action" sequence="20"/>
     </data>
 </odoo>
