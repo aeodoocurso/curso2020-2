@@ -2,7 +2,7 @@
 # Pablo Moreno - pmoreno@ticomsa.com
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
-    "name": "Helpdesk Pablo Moreno",
+    "name": "CRM Helpdesk Pablo Moreno",
     "summary": "Helpdesk and tickets",
     'description': """
 Helpdesk and tickets
@@ -19,20 +19,13 @@ This helpdesk system enables the creation of tickets for technical support
     "application": True,
     "installable": True,
     "depends": [
-        "base",
-        "mail",
+        "crm",
     ],
 
     "data": [
         'security/helpdesk_security.xml',
         'security/ir.model.access.csv',
-        'wizards/new_ticket_from_tag_views.xml',
         'views/helpdesk_ticket_views.xml',
-        'views/helpdesk_tag_views.xml',
-        'views/helpdesk_action_views.xml',
-        'data/helpdesk_data.xml',
-        'data/helpdesk_demo.xml',
-        'reports/helpdesk_ticket_templates.xml',
 
     ],
     "demo": [

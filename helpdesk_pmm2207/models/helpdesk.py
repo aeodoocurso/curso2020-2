@@ -2,11 +2,11 @@ from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError, UserError
 from datetime import datetime, timedelta
 
-class HelpdeskTicketState(models.Model):
-    _name = 'helpdesk.ticket.state'
-    _description = 'Helpdesk State'
-
-    name = fields.Char()
+# class HelpdeskTicketState(models.Model):
+#     _name = 'helpdesk.ticket.state'
+#     _description = 'Helpdesk State'
+#
+#     name = fields.Char()
 
 class HelpdeskTag(models.Model):
     _name = 'helpdesk.tag'
@@ -41,6 +41,9 @@ class HelpdeskTicketAction(models.Model):
 class HelpdeskTicket(models.Model):
     _name = 'helpdesk.ticket'
     _description = "Helpdesk Ticket"
+    _inherit = [
+        'mail.thread', 'mail.activity.mixin'
+    ]
 
     def _default_user_id(self):
        return self.env.user
@@ -59,20 +62,21 @@ class HelpdeskTicket(models.Model):
     description = fields.Text(
         string='Description')
     date = fields.Date(
-        string='Date')
+        string='Date',
+        tracking=True)
     state_id = fields.Many2one(
         comodel_name="helpdesk.ticket.state",
         string="State" )
 
-    # state = fields.Selection(
-    #     [('new', 'New'),
-    #      ('assigned', 'Assigned'),
-    #      ('progress', 'In progress'),
-    #      ('waiting', 'Waiting'),
-    #      ('solved', 'Solved'),
-    #      ('canceled', 'Canceled')],
-    #     string='State',
-    #     default='new')
+    state = fields.Selection(
+        [('new', 'New'),
+         ('assigned', 'Assigned'),
+         ('progress', 'In progress'),
+         ('waiting', 'Waiting'),
+         ('solved', 'Solved'),
+         ('canceled', 'Canceled')],
+        string='State',
+        default='new')
 
     dedicated_time = fields.Float(
         string='Time',
@@ -96,6 +100,10 @@ class HelpdeskTicket(models.Model):
         comodel_name="res.users",
         string='Assigned to',
         default=_default_user_id)
+
+    partner_id = fields.Many2one(
+        comodel_name="res.partner",
+        string='Customer')
 
     deadline = fields.Date(
         string='Deadline'
@@ -169,7 +177,7 @@ class HelpdeskTicket(models.Model):
         #     'tag_ids': [(4, tag.id, 0)]
         # })
         import wdb
-        wdb.set_trace
+        wdb.set_trace()
         self.tag_ids = self.tag_ids + tag
 
     def create_new_tag(self):
@@ -224,3 +232,31 @@ class HelpdeskTicket(models.Model):
               raise UserError(_("Date must be today or future."))
             date_datetime = fields.Date.from_string(self.date)
             self.deadline = date_datetime + timedelta(1)
+
+    def set_assigned_multi(self):
+        for ticket in self:
+            ticket.set_assigned()
+
+
+    def set_assigned(self):
+        self.ensure_one()
+        self.write({
+            'assigned': True,
+            'state': 'assigned',
+        })
+
+    def set_progress(self):
+        self.ensure_one()
+        self.state = 'progress'
+
+    def set_waiting(self):
+        self.ensure_one()
+        self.state = 'waiting'
+
+    def set_solved(self):
+        self.ensure_one()
+        self.state = 'solved'
+
+    def set_canceled(self):
+        self.ensure_one()
+        self.state = 'canceled'

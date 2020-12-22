@@ -8,7 +8,8 @@
           <tree string="Tickets">
               <field name="name"/>
               <field name="date"/>
-              <field name="state_id"/>
+              <field name="state"/>
+<!--              <field name="state_id"/>-->
           </tree>
       </field>
   </record>
@@ -25,7 +26,7 @@
 <!--                <button name="set_solved" type="object" string="Solved" class="oe_highlight"/>-->
 <!--                <button name="set_canceled" type="object" string="Canceled"/>-->
 
-                 <field name="state_id" widget="statusbar"/>
+                 <field name="state" widget="statusbar"/>
              </header>
               <sheet>
                   <div>
@@ -38,6 +39,7 @@
                           <field name="date"/>
                           <field name="priority"/>
                           <field name="deadline"/>
+                          <field name="partner_id" context="{'default_company_type': 'person', 'default_user_id': user_id, 'default_search_type_person': 'True'}"/>
                       </group>
                       <group name="right">
                           <field name="user_id"/>
@@ -81,6 +83,11 @@
                       </page>
                   </notebook>
               </sheet>
+              <div class="oe_chatter">
+                  <field name="message_follower_ids" widget="mail_followers"/>
+                  <field name="activity_ids" widget="mail_activity"/>
+                  <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+              </div>
           </form>
       </field>
   </record>
