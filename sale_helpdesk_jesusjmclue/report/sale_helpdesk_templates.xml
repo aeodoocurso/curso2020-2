@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_saleorder_helpdesk" inherit_id="sale.report_saleorder_document">
+    	<xpath expr="//div[@name='signature']" position="before">
+    		<t t-if="doc.ticket_ids">
+    			<h2>Related tickets (<span t-esc="len(doc.ticket_ids)"/>)</h2>
+    			<table class="table table-sm o_main_table">
+	                <thead>
+	                    <tr>
+	                        <th name="th_description" class="text-left">Description</th>
+	                        <th name="th_date" class="text-right">Date</th>
+	                        <th name="th_state" class="text-right">State</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <t t-foreach="doc.ticket_ids" t-as="ticket">
+	                    	<tr>
+	                    		<td name="td_description"><span t-field="ticket.name"/></td>
+		                    	<td name="td_name" class="text-right"><span t-field="ticket.date"/></td>
+		                    	<td name="td_state" class="text-right"><span t-field="ticket.state"/></td>
+	                    	</tr>
+	                    </t>
+	                </tbody>
+	            </table>
+    		</t>
+    	</xpath>
+    </template>
+</odoo>
