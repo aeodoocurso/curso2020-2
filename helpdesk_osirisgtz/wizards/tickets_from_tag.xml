@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_" model="ir.ui.view">
+        <field name="name">Tickets</field>
+        <field name="model">tickets.from.tag</field>
+        <field name="arch" type="xml">
+            <form string="Tickets">
+                <p class="oe_grey">
+                        Created tickets
+                </p>
+                <group>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="user_id"/>
+                    <field name="tag_id" readonly="1"/>
+                </group>
+                <footer>
+                    <button name="create_ticket" id="ticket_from_tag"
+                        string="Create Ticket" type="object"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_wiz_ticket_from_tag" model="ir.actions.act_window">
+            <field name="name">Create Ticket</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tickets.from.tag</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <!--<field name="binding_model_id" ref="helpdesk_osirisgtz.helpdesk_tag"/>
+            <field name="binding_view_types">list</field>-->
+        </record>
+</odoo>
