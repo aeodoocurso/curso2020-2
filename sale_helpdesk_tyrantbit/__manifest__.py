@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name":
-    "Helpdesk Juanma Beltran",
+    "Sale Helpdesk Juanma Beltran",
     "summary":
     "Helpdesk and tickets",
     "version":
@@ -14,7 +14,7 @@
     "https://github.com/OCA/helpdesk",
     "author":
     "AEODOO, Odoo Community Association (OCA)",
-    """ see https://odoo-community.org/page/maintainer-role for a 
+    """ see https://odoo-community.org/page/maintainer-role for a
     description of the maintainer role and responsibilities """
     "maintainers": ["tyrantbit"],
     "license":
@@ -24,19 +24,16 @@
     "installable":
     True,
     "depends": [
-        "base",
-        "mail",
+        "sale",
+        "helpdesk_tyrantbit",
     ],
     "data": [
-        'security/helpdesk_security.xml',
-        'security/ir.model.access.csv',
-        'wizards/new_ticket_from_tag.xml',
+        # 'security/helpdesk_security.xml',
+        # 'security/ir.model.access.csv',
+        'views/sale_order_views.xml',
+        'views/product_views.xml',
         'views/helpdesk_ticket_views.xml',
-        'views/helpdesk_tag_views.xml',
-        'views/helpdesk_ticket_action_views.xml',
-        'data/helpdesk_data.xml',
-        'data/helpdesk_demo.xml',
-        'reports/helpdesk_ticket_templates.xml',
+        'reports/sale_report_templates.xml',
     ],
     "demo": []
 }

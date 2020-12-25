@@ -7,62 +7,181 @@
         <field name="arch" type="xml">
             <tree string="Tickets">
                 <!-- Add your fields here -->
-                <field name="name"/>
-                <field name="date"/>
-                <field name="state"/>
+                <field name="name" />
+                <field name="date" />
+                <field name="state" />
             </tree>
         </field>
     </record>
 
+    <!-- view.helpdesk.ticket search view -->
+    <record id="model_name_view_search" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.search</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="user_id" />
+                <filter name="assigned" string="Assigned" domain="[('assigned', '=', True)]" />
+                <filter name='with_time' string="Without date due" domain="[('date_due', '=', False)]" />
+                <filter name='Assigned' string='Assigned' context="{'group_by': 'assigned'}" />
+            </search>
+        </field>
+    </record>
+
+    <!-- view.helpdesk.ticket kanban view -->
+    <record id="view_helpdesk_ticket_kanban" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.kanban</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <kanban string="Tickets" default_group_by="user_id" colors='{"new":"assigned":"progress":"waiting":"done":"cancel"}'>
+                <field name="color" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="#{!selection_mode ? kanban_color(record.color.raw_value) : 'red'} oe_kanban_global_click oe_kanban_global_click">
+                            <div class="o_dropdown_kanban dropdown">
+
+                                <a class="dropdown-toggle o-no-caret btn" role="button" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                    <span class="fa fa-ellipsis-v" />
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                    <t t-if="widget.editable">
+                                        <a role="menuitem" type="edit" class="dropdown-item">Edit</a>
+                                    </t>
+                                    <t t-if="widget.deletable">
+                                        <a role="menuitem" type="delete" class="dropdown-item">Delete</a>
+                                    </t>
+                                    <ul class="oe_kanban_colorpicker" data-field="color" />
+                                </div>
+                            </div>
+                            <div class="oe_kanban_content">
+                                <div>
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name" />
+                                    </strong>
+                                    <br />
+                                    <field name="user_id" />
+                                    <br />
+                                    <field name="dedicated_time" />
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- views.helpdesk.ticket pivot view -->
+    <record id="view_helpdesk_ticket_pivot" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.pivot</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <pivot string="Tickets">
+                <field name="user_id" type="row" />
+                <field name="date_due" interval="month" type="row" />
+                <field name="dedicated_time" type="row" />
+            </pivot>
+        </field>
+    </record>
+
+    <!-- view.helpdesk.ticket graph view -->
+    <record id="view_helpdesk_ticket_graph" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.view.graph</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <graph string="Tickets">
+                <field name="user_id" />
+                <field name="dedicated_time" type="measure" />
+            </graph>
+        </field>
+    </record>
+
+    <!-- helpdesk.ticket calendar view -->
+    <record id="view_helpdesk_ticket_calendar" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.calendar</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <calendar string="Tickets" date_start="date_due" color="user_id" hide_time="true" event_limit="5">
+                <field name="user_id" />
+            </calendar>
+        </field>
+    </record>
+
     <!-- form.helpdesk.ticket form view -->
-    <record id="view_helpdesk_tichet_form" model="ir.ui.view">
+    <record id="view_helpdesk_ticket_form" model="ir.ui.view">
         <field name="name">view.helpdesk_ticket.form</field>
         <field name="model">helpdesk.ticket</field>
         <field name="arch" type="xml">
             <form string="label">
-                <header >
+                <header>
                     <button string="Assing" name="set_assigned" type="object" attrs="{'invisible': [('state', '!=', 'new')]}" />
-                    <button string="In progress" name="set_progress" type="object" states="assigned"/>
-                    <button string="Waiting" name="set_waiting" type="object" states="assigned,progress"/>
-                    <button string="Done" name="set_done" type="object" states="waiting,progress,assigned,new"/>
-                    <button string="Cancel" name="set_cancel" type="object" states="new,assigned,progress,waiting,done"/>
-                    <field name="state" widget="statusbar" statusbar_visible="new,done"/>
-                    <!-- states="assigned,progress" -->
-                    <!-- class="oe_highlight" -->
+                    <button string="In progress" name="set_progress" type="object" states="assigned" />
+                    <button string="Waiting" name="set_waiting" type="object" states="assigned,progress" />
+                    <button string="Done" name="set_done" type="object" states="waiting,progress,assigned,new" />
+                    <button string="Cancel" name="set_cancel" type="object" states="new,assigned,progress,waiting,done" />
+                    <field name="state" widget="statusbar" statusbar_visible="new,done" />
                 </header>
                 <sheet>
                     <div>
                         <h1>
-                            Ticket# <field name="name" class="oe_inline"/>
+                            Ticket#
+                            <field name="name" class="oe_inline" />
                         </h1>
                     </div>
                     <group name="main">
                         <group name="left">
-                            <field name="date"/>
-                            <field name="date_due"/>
+                            <field name="date" />
+                            <field name="date_due" />
+                            <field name="partner_id" context="{'default_company_type': 'person', 'default_user_id': user_id}" />
                         </group>
                         <group name="right">
-                            <field name="user_id"/>
-                            <field name="assigned"/>
-                            <field name="dedicated_time" widget="float_time"/>
+                            <field name="user_id" />
+                            <field name="assigned" />
+                            <field name="ticket_qty" />
+                            <field name="dedicated_time" widget="float_time" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Main" name="Main">
                             <group string="Description" nolabel="1">
-                                <field name="description"/>
+                                <field name="description" nolabel="1" cols="2" />
+                                <field name="tag_ids" nolabel="1" colspan="2" options="{'no_create': True}" />
+                                <field name="related_tag_ids" nolabel="1" colspan="2" context="{'tree_view_ref':'helpdesk_tyrantbit.view_helpdesk_tag_simple_tree', 'form_view_ref':'helpdesk_tyrantbit.view_helpdesk_tag_simple_form'}" />
+                                <field name="new_tag_name" />
+                                <button string="New tag" name="create_new_tag" type="object" />
                             </group>
                         </page>
                         <page string="Quality" name="Quality">
+                            <group string="Actions">
+                                <field name="action_id" nolabel="1" context="{'default_date':date}">
+                                    <tree editable="bottom">
+                                        <field name="name" />
+                                        <field name="date" />
+                                        <field name="dedicated_time" widget="float_time" />
+                                    </tree>
+                                    <!-- <form> if tree editable, this sections isn't needed
+                                        <group>
+                                            <field name="name"/>
+                                            <field name="date"/>
+                                        </group>
+                                    </form> -->
+                                </field>
+                            </group>
                             <group string="Corrective Action" nolabel="1">
-                                <field name="corrective_action"/>
+                                <field name="corrective_action" />
                             </group>
                             <group string="Preventive Action" nolabel="1">
-                                <field name="preventive_action"/>
+                                <field name="preventive_action" />
                             </group>
                         </page>
                     </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                </div>
             </form>
         </field>
     </record>
@@ -70,17 +189,17 @@
     <record id="helpdesk_ticket_action" model="ir.actions.act_window">
         <field name="name">Tickets</field>
         <field name="res_model">helpdesk.ticket</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form,pivot,graph,calendar</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
             Click to create a new Tickets</p>
         </field>
     </record>
 
-    <menuitem id="helpdesk_root_menu" name="Helpdesk" sequence="10"/>
+    <menuitem id="helpdesk_root_menu" name="Helpdesk" sequence="10" />
 
-    <menuitem id="helpdesk_ticket_main_menu" name="Helpdesk" parent="helpdesk_root_menu" sequence="10"/>
+    <menuitem id="helpdesk_ticket_main_menu" name="Helpdesk" parent="helpdesk_root_menu" sequence="10" />
 
-    <menuitem id="helpdesk_ticket_menu" name="Tickets" parent="helpdesk_ticket_main_menu" action="helpdesk_ticket_action" sequence="10"/>
+    <menuitem id="helpdesk_ticket_menu" name="Tickets" parent="helpdesk_ticket_main_menu" action="helpdesk_ticket_action" sequence="10" />
 
 </odoo>
