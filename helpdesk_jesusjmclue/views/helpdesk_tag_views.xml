@@ -12,6 +12,9 @@
                             <field name="ticket"/>
                             <field name="action"/>
                             <field name="ticket_ids" widget="many2many_tags" />
+                            <button string="Create ticket" 
+                                name="%(helpdesk_jesusjmclue.new_ticket_from_tag_action)d" 
+                                type="action" />
                         </group>
                     </sheet>
                 </form>
@@ -56,18 +59,25 @@
         </record>
 
 	    <record id="helpdesk_ticket_tag_action" model="ir.actions.act_window">
-        <field name="name">Helpdesk Ticket Tag</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">helpdesk.ticket.tag</field>
-        <field name="view_mode">tree,form</field>
-        <field name="context">{}</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_create">
-                Create new Helpdesk Ticket Tag
-            </p>
-        </field>
-    </record>
+            <field name="name">Helpdesk Ticket Tag</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">helpdesk.ticket.tag</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_create">
+                    Create new Helpdesk Ticket Tag
+                </p>
+            </field>
+        </record>
 
-    <menuitem id="helpdesk_tag_menu" name="Tags" parent="helpdesk_ticket_main_menu" action="helpdesk_ticket_tag_action" sequence="20"/>
+        <record id="helpdesk_ticket_new_tag_action" model="ir.actions.act_window">
+            <field name="name">Tag</field>
+            <field name="res_model">helpdesk.ticket.tag</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="helpdesk_tag_menu" name="Tags" parent="helpdesk_ticket_main_menu" action="helpdesk_ticket_tag_action" sequence="20"/>
 	</data>
 </odoo>
