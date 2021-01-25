@@ -1,5 +1,5 @@
 {
-	"name" : "Helpdesk",
+	"name" : "Sale Helpdesk",
 	"summary" : "Helpdesk tickets",
 	"description" : """
 Helpdesk
@@ -16,16 +16,12 @@ Helpdesk module that enables the feature of creating support tickets.
     "license": "AGPL-3",
     "application": True,
     "installable": True,
-	"depends" : [ "base", "mail"],
+	"depends" : [ "sale_management", "helpdesk_jesusjmclue"],
 	"data" : [
-		'security/helpdesk_security.xml',
-		'security/ir.model.access.csv',
-		'views/helpdesk_ticket_views.xml',
-		'views/helpdesk_tag_views.xml',
-		'views/helpdesk_action_views.xml',
-		'report/helpdesk_ticket_templates.xml',
-	],
-	"demo" : [
-		'data/helpdesk_demo.xml',
-	]
+        'views/sale_views.xml',
+        'views/product_views.xml',
+        'views/helpdesk_ticket_views.xml',
+        'report/sale_helpdesk_templates.xml',
+    ],
+	"demo" : []
 }

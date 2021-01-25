@@ -1,12 +1,5 @@
 from odoo import api, fields, models
 
-class HelpdeskTicketState(models.Model):
-	_name = 'helpdesk.ticket.state'
-	_description = "Helpdesk Ticket State"
-
-	name = fields.Char()
-
-
 class HelpdeskTicketTag(models.Model):
 	_name = 'helpdesk.ticket.tag'
 	_description = "Helpdesk Ticket Tag"
@@ -35,6 +28,10 @@ class HelpdeskTicketAction(models.Model):
 class HelpdeskTicket(models.Model):
 	_name = 'helpdesk.ticket'
 	_description = "Helpdesk Ticket"
+	_inherit = [
+		'mail.thread.cc',
+		'mail.activity.mixin',
+	]
 
 	name = fields.Char(
 		string = 'Name',
@@ -42,11 +39,18 @@ class HelpdeskTicket(models.Model):
 	description = fields.Text(
 		string = 'Description')
 	date = fields.Date(
-		string = 'Date')
+		string = 'Date',
+		tracking = True)
 
-	state_id = fields.Many2one(
-		comodel_name = 'helpdesk.ticket.state',
-		string = 'State')
+	state = fields.Selection(
+		[('new', 'New'),
+		 ('assigned', 'Assigned'),
+		 ('progress', 'In Progress'),
+		 ('waiting', 'Waiting'),
+		 ('done', 'Done'),
+		 ('cancelled', 'Cancelled')],
+		string = 'State',
+		default = 'new')
 
 	dedicated_time = fields.Float(
 		string = 'Time')
@@ -63,6 +67,10 @@ class HelpdeskTicket(models.Model):
 	user_id = fields.Many2one(
 		comodel_name = 'res.users',
 		string = 'Assigned to')
+
+	partner_id = fields.Many2one(
+		comodel_name = 'res.partner',
+		string = 'Customer')
 
 	due_date = fields.Date(
 		string = 'Due Date')

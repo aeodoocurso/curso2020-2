@@ -8,7 +8,7 @@
             <tree string="Tickets">
                 <field name="name"/>
                 <field name="date"/>
-                <field name="state_id"/>
+                <field name="state"/>
                 <field name="dedicated_time" widget="float_time"/>
             </tree>
         </field>
@@ -20,7 +20,7 @@
         <field name="arch" type="xml">
             <form string="Tickets">
                 <header>
-                    <field name="state_id" widget="statusbar"/>
+                    <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
                     <div>
@@ -30,6 +30,7 @@
                         <group name="left">
                             <field name="date"/>
                             <field name="due_date"/>
+                            <field name="partner_id" context="{'default_company_type' : 'person', 'default_user_id' : user_id}" />
                         <name />
                         </group>
                         <group name="right">
@@ -74,6 +75,11 @@
                         </page>
                     </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                </div>
             </form>
         </field>
     </record>
